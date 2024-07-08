@@ -1,0 +1,115 @@
+/* Global reset and styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f2f2;
+    line-height: 1.6;
+}
+
+/* Styles for the loading spinner */
+#spinner {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+#spinner::after {
+    content: " ";
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 4px solid #3498db;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Additional styles for the content */
+#content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+#content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #007bff; /* Blue color for headings */
+}
+
+#content form {
+    text-align: center;
+}
+
+#content img {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#content p {
+    margin-bottom: 20px;
+    color: #555; /* Slightly darker gray color for paragraphs */
+    font-size: 18px;
+    text-align: justify;
+}
+
+#content input[type="radio"],
+#content input[type="checkbox"] {
+    margin-right: 10px;
+    /* Styling radio and checkbox */
+}
+
+#content input[type="submit"] {
+    padding: 16px 32px;
+    background-color: #4CAF50; /* Green button background */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+#content input[type="submit"]:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+@media (max-width: 600px) {
+    /* Responsive adjustments */
+    #content {
+        padding: 15px;
+    }
+    
+    #content h1 {
+        font-size: 30px;
+    }
+    
+    #content input[type="submit"] {
+        font-size: 18px;
+        padding: 12px 24px;
+    }
+}

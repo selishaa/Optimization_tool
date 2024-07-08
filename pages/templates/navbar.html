@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Navigation Bar</title>
+    <style>
+        /* Resetting default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9e9de; /* Light gray background color */
+        }
+
+        nav {
+            background-color: #9fb6c3; /* Soft blue-gray background color */
+            padding: 10px 0; /* Padding around the navigation */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for a subtle raised effect */
+            position: relative;
+        }
+
+        nav ul {
+            list-style-type: none;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 20px; /* Spacing between menu items */
+            position: relative;
+        }
+
+        nav ul li a {
+            display: block;
+            color: #343a40; /* Dark gray text color */
+            text-decoration: none;
+            padding: 15px 20px; /* Padding inside each menu item */
+            transition: all 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0%;
+            height: 2px;
+            background-color: #343a40; /* Dark gray underline color */
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover::before {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: #007bff; /* Primary blue color on hover */
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#resource">Resource Information</a></li>
+        <li><a href="#needs">Needs Information</a></li>
+        <li><a href="#results">Results</a></li>
+    </ul>
+</nav>
+
+</body>
+</html>
+
+
+
+
+
+

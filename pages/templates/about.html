@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>About Us</h1>
+<p>This is the about us page which will have a description of the project, the people behind it and our goals</p>
+<p>Page was accessed by: </p>
+{{request.user}}
+<p>
+    {{ my_team }}, {{ my_number }}, {{ my_list }}
+</p>
+<ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+</ul>
+<ul>
+{% for my_item in my_values %}
+    <li>{{my_item}}</li>
+{% endfor %}
+</ul>
+{% endblock %}
