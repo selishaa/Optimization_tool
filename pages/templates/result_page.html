@@ -1,27 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 <div id="content">
-   <div class="section">
-        <h1>Solar Irradiation</h1>
-        <p>An area that is {{ solar }} will produce {{ solar_energy }} kW of energy</p>
-    </div>
 
-    <div class="section">
-        <h1>Wind Energy</h1>
-        <p>An area that is {{ wind }} will produce {{ wind_energy }} kW of energy</p>
-    </div>
 
-    <div class="section">
-        <h1>Hydropower</h1>
-        <p>An area with {{ hydro }} will produce {{ hydro_energy }} kW of energy</p>
-    </div>
-
-    <div class="section">
-        <h1>Biogas</h1>
-        <p>An area with {{ bio }} will produce {{ bio_energy }} kW of energy</p>
-    </div>
-
-    <div id="summary" class="section">
+     <div id="summary" class="section">
         <h1>Summary</h1>
         <p>For this particular situation, the most optimized solution is:</p>
         <p>Solar power = {{ solar_ind }}</p>

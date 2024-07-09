@@ -414,8 +414,11 @@ def main():
     print("-- Best Individual = ", best)
     #PRINT THIS
     print("-- Best Fitness = ", best.fitness.values[0])
+    
 
     x_1, x_2, x_3, x_4, x_5, x_6, x_7, x_8 = best
+    
+    
     global bestIND
     bestIND = [x_1, x_2, x_3, x_4, x_5, x_6, x_7, x_8]
     #PV generation:                      # define all the equations again to print them inside the main()
@@ -425,28 +428,35 @@ def main():
         Isc[t] = (Isc_stc + (ki * (Tc[t] - 25))) * G[t] / 1000
         i_pv[t] = Ns * Np * Voc[t] * Isc[t] * Pmax / (Vmax * Imax)
         P_pv[t] = x_1 * i_pv[t]/1000
+        P_pv_ele = np.sum(P_pv)
     # Wind generation:
     for t in range(No_data):
         if vin <= v[t] <= vr:
             wind[t] = Pr * (v[t]-vin)/(vr-vin)
             p_wind[t] = x_2 * wind[t]/1000
+            P_wind_ele = np.sum(p_wind)
         elif vr <= v[t] <= vo:
             wind[t] = Pr
             p_wind[t] = x_2 * wind[t]/1000
+            P_wind_ele = np.sum(p_wind)
         else:
             wind[t] = 0
             p_wind[t] = 0
+            P_wind_ele = np.sum(p_wind)
     # Hydro power generation:
     for t in range(No_data):
         hydro_ele[t] = 20+(5 * random.uniform(0,1))
         hydro_gen[t] = x_3* n_hydro * 1 * Hd * g *hydro_ele[t]/3600
+        hydro_gen_ele = np.sum(hydro_gen)
     # Biogas generation:
     for t in range(No_data):
         bio_elec[t] = 1+ random.uniform(0,1)
         biogas_gen[t] = x_4 * 5.6 * bio_elec[t]/50
+        biogas_gen_ele = np.sum(biogas_gen)
     #load
     for t in range(No_data):
         load[t] = (15+2*random.uniform(0,1) * ele[t])
+        load_total = np.sum(load)
     # Battery:
     for t in range(No_data):
         if t == 0:
@@ -476,31 +486,41 @@ def main():
     for t in range(No_data):
         bio_elec[t] = 1+ random.uniform(0,1)
         Q_bio[t] = x_6 *(n_pump_engine *bio_elec[t] *5.6*367)/Height
+        Q_bio_pump = np.sum(Q_bio)
     # Wind water pump
     for t in range(No_data):
         if v[t] >= 3 and v[t] <= 10:
             W_wind[t] = x_7 *3
+            W_wind_pump = np.sum(W_wind)
         elif v[t] >= 10.1 and v[t]<= 16.9:
             W_wind[t] = x_7 * 6
+            W_wind_pump = np.sum(W_wind)
         elif v[t] >=17 and v[t] <= 20:
             W_wind [t] = x_7 * 10
+            W_wind_pump = np.sum(W_wind)
         else:
             W_wind [t] = 0
+            W_wind_pump = np.sum(W_wind)
     # PV powered water pump
     for t in range(No_data):
         Q_pv[t] = x_8* n_pv*3600* G[t] * 0.1/ (pw*g*Height)
+        Q_pv_pump = np.sum(Q_pv)
     # Water load
     for t in range(No_data):
         if t == 0:
             if Q_bio[t] + W_wind[t] + Q_pv[t] - W_load[t] >0:
                 W_res[t] = Q_bio[t] + W_wind[t] + Q_pv[t] - W_load[t]
+                Load_W_total = np.sum(W_res)
             else:
                 W_res[t] = 0
+                Load_W_total = np.sum(W_res)
         else:
             if W_res[t-1] + Q_bio[t] + W_wind[t] + Q_pv[t] > W_load[t]:
                 W_res[t] = W_res[t-1] + Q_bio[t] + W_wind[t] + Q_pv[t] - W_load[t]
+                Load_W_total = np.sum(W_res)
             else:
                 W_res[t] =0
+                Load_W_total = np.sum(W_res)
     # Loss of water supply probability
     for t in range(No_data):
         LWS[t] = W_load[t] - (Q_bio[t] + W_wind[t]+ Q_pv[t]+ W_res[t])
@@ -535,6 +555,49 @@ def main():
     print("ACS = ", ACS)
     print("Initial cost = ", InitialCost)
     print("Net present cost (NPC) = ", NPC) 
+    
+    # Lifecycle CO2 emission 
+    # CO2 emission from PV solar producing electricity
+    P_pv_CO2 = (P_pv_ele*85)/10**6
+
+    # CO2 emission from wind producing electricity
+    P_wind_CO2 = (P_wind_ele*26)/10**6
+
+    # CO2 emission from hydro producing electricity
+    hydro_gen_CO2 = (hydro_gen_ele*26)/10**6
+
+    # CO2 emission from biogas producing electricity
+    biogas_gen_CO2 = (biogas_gen_ele*45)/10**6
+
+    # CO2 emission from PV solar water pump
+    Q_PV_Wpump = (Q_pv_pump*50)/(.50*367)
+    Q_pv_pump_CO2 = (Q_PV_Wpump*85)/10**6
+
+    # CO2 emission from wind water pump
+    W_WIND_Wpump = (W_wind_pump*50)/(.50*367)
+    W_wind_pump_CO2 = (W_WIND_Wpump*26)/10**6
+
+    # CO2 emission from biogas water pump
+    Q_BIO_Wpump = (Q_bio_pump*50)/(.50*367)
+    Q_bio_pump_CO2 = (Q_BIO_Wpump*45)/10**6
+
+    # Total CO2 emission
+    CO2_total = P_pv_CO2 + P_wind_CO2 + hydro_gen_CO2 + biogas_gen_CO2 + Q_pv_pump_CO2+ W_wind_pump_CO2 + Q_bio_pump_CO2
+    print("The total amount of CO2 emitted:", CO2_total) #important
+
+    # Calculating HDI
+    ele_Eexcess = (P_pv_ele-load_total)+(P_wind_ele-load_total)+(hydro_gen_ele-load_total)+(biogas_gen_ele-load_total)
+    W_Eexcess = (Q_pv_pump-Load_W_total)+(W_wind_pump-Load_W_total)+(Q_bio_pump-Load_W_total)
+    Eexcess = ele_Eexcess + W_Eexcess
+    HDI_total = 0.0978*math.log(((load_total+Load_W_total)+min(0.3*Eexcess,0.5*(load_total+Load_W_total)))/700)-0.0319
+    print("HDI = ", HDI_total) #important
+    print ("Eexcess = ", Eexcess)
+    print("Electricity Eexcess = ", ele_Eexcess)
+    print("Water Eexcess = ", W_Eexcess) 
+
+
+    
+    
     # extract statistics:
     global minFitnessValues, meanFitnessValues
     minFitnessValues, meanFitnessValues = logbook.select("min", "avg")
@@ -715,11 +778,15 @@ def return_graph5():
     return graph
 
 def return_graph6():
+    P_pv_ele = np.sum(P_pv)
+    P_wind_ele = np.sum(p_wind)
+    hydro_gen_ele = np.sum(hydro_gen)
+    biogas_gen_ele = np.sum(biogas_gen)
        # Assume these are calculated or fetched from your data source
-    P_pv_ele = 500  # Example value, replace with actual calculation or data fetching
-    P_wind_ele = 300
-    hydro_gen_ele = 400
-    biogas_gen_ele = 200
+    #P_pv_ele = 500  # Example value, replace with actual calculation or data fetching
+   # P_wind_ele = 300
+   # hydro_gen_ele = 400
+   # biogas_gen_ele = 200
 
    
     resource_sums = {
@@ -737,15 +804,15 @@ def return_graph6():
     plt.title('Electricity Generated From Renewable Sources')
     plt.show()
     graph = get_graph()
-    print("graph6 is printing")
     return graph
 
     
 def return_graph7():
-    # Pie chart to split each sum of water pumped
-    Q_bio_pump = 50
-    Q_pv_pump = 30
-    W_wind_pump = 20
+    Q_bio_pump = np.sum(Q_bio)
+    Q_pv_pump = np.sum(Q_pv)
+    W_wind_pump = np.sum(W_wind)
+  
+    
     resource_sums = {
     'Biogas Water Pump': Q_bio_pump,
     'PV Water Pump': Q_pv_pump,
@@ -760,7 +827,7 @@ def return_graph7():
     plt.title('Water Pumped From Renewable Sources')
     plt.show()
     graph = get_graph()
-    print("graph7 is printing")
+    
     
     return graph
     

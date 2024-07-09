@@ -62,7 +62,7 @@ def results_view(request):
 def calculations_view(request):
     #Solar
     
-    print("Post request at calculations_view is working")
+    
     solar = str(request.GET["solar"])
     if(solar == "sunny"):
         G = [0,0,0,0,0,1,93,273,470,664,819,932,975,992,762,820,598,459,261,25, 0,0,0,0]    
