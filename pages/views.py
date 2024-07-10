@@ -13,11 +13,11 @@ from .NoElitismTrial import main, best
 
 # GeneticAlgorithmPython.Finaloneyear_ST
 from GeneticAlgorithmPython.Finaloneyear_ST import main as mainYear
-from GeneticAlgorithmPython.Finaloneyear_ST import bestYear, LPSP, LWSP, return_graph1, return_graph2, return_graph3, return_graph4, return_graph5, return_graph6, return_graph7
+from GeneticAlgorithmPython.Finaloneyear_ST import bestYear, LPSP, LWSP, return_graph1, return_graph2, return_graph3, return_graph4, return_graph5, return_graph6, return_graph7 
 
 
-from GeneticAlgorithmPython.Microgrid_with_diesel_ST import fig1, fig2, fig3
-from GeneticAlgorithmPython.Microgrid_without_diesel_ST import figwd1, figwd2, figwd3
+
+
 
 from base64 import b64encode
 from django.http import JsonResponse
@@ -28,6 +28,9 @@ import os
 import numpy as np
 import base64
 # Create your views here.
+
+
+
 def home_view(request, *args, **kwargs):
     print(request.user)
     return HttpResponse("<h1>Renewable Energy</h1>") #string of HTML code
@@ -43,6 +46,9 @@ def about_view(request):
 
 def optimization_view(request):
     return render(request, 'optimization.html', {})
+
+def demographic_view(request):
+    return render(request, 'demo.html', {})
 
 #trial of a graph
 def plot_view(request):
@@ -147,16 +153,15 @@ def calculations_view(request):
     mainYear()
     #solar, wind, hydropower, biogas, battery, biogas-powered water pump, wind-powered water pump, solar-powered water pump
     individual = bestYear()
-    solar_ind = individual[0]
-    wind_ind = individual[1]
-    hydropower_ind = individual[2]
-    biogas_ind = individual[3]
-    battery_ind = individual[4]
-    biogasWP_ind = individual[5]
-    windWP_ind = individual[6]
-    solarWP_ind = individual[7]
+    
+    ACS = 26865.804379422112  # Replace with your actual ACS calculation
+    Initial_cost = 15814.384299089257  # Replace with your actual Initial cost calculation
+    NPC = 511408.13195292  # Replace with your actual NPC calculation
+    CO2_emitted = 1.600643819103928  # Replace with your actual CO2 emitted calculation
+    HDI = 0.3806041481619234  # Replace with your actual HDI calculation
+    Eexcess = -312393.5669519148
 
-    LWSP_print = LWSP
+  
     LPSP_print = LPSP
 
 
@@ -168,13 +173,7 @@ def calculations_view(request):
     chart6 = return_graph6
     chart7 = return_graph7
     
-    chart1_diesel = fig1
-    chart2_diesel = fig2
-    chart3_diesel = fig3
     
-    chart1_without_diesel = figwd1
-    chart2_without_diesel = figwd2
-    chart3_without_diesel = figwd3
     
     
   
@@ -183,17 +182,16 @@ def calculations_view(request):
     
     #sends the values to the results page
     return render(request, 'result_page.html', {
-    "solar_energy": solar_energy, "solar": solar, 
-    "wind": wind, "wind_energy": wind_energy,
-    "hydro": hydro, "hydro_energy": hydro_energy,
-    "bio": bio, "bio_energy": bio_energy,
-    "LPSP": LPSP_print, "LWSP": LWSP_print,
-    "individual": individual,
-    "solar_ind": solar_ind, "wind_ind": wind_ind, 'hydropower_ind': hydropower_ind, "biogas_ind": biogas_ind, "battery_ind": battery_ind,
-    "biogasWP_ind": biogasWP_ind, "windWP_ind": windWP_ind, "solarWP_ind": solarWP_ind,
-    "chart1": chart1, "chart2": chart2, "chart3": chart3, "chart4": chart4, "chart5": chart5, "chart6": chart6, "chart7": chart7,
-    "chart1_diesel": chart1_diesel, "chart2_diesel": chart2_diesel,  "chart3_diesel": chart3_diesel,
-    "chart1_without_diesel": chart1_without_diesel, "chart2_without_diesel": chart2_without_diesel,  "chart3_without_diesel": chart3_without_diesel,
+    "ACS": ACS,
+    "Initial_cost": Initial_cost,
+    "NPC": NPC,
+    "CO2_emitted": CO2_emitted,
+     "HDI": HDI,
+     "Eexcess": Eexcess,
+     "individual": individual,
+     "LPSP_print": LPSP_print,
+    "chart1": chart1, "chart2": chart2, "chart3": chart3, "chart4": chart4, "chart5": chart5, "chart6": chart6, "chart7": chart7
+   
     })
    
 

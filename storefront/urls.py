@@ -28,6 +28,7 @@ urlpatterns = [
     path('optimization_tool/results_page', results_view, name='results'), # shows results
     path('calculator/plot', plot_view, name = 'plot'), #shows graphs
     path('optimization_tool/optimization', calculations_view, name = 'optimization'), #shows results
+    path('demographic/', demographic_view, name='demographic'), #shows demographic data
    
 
 ]

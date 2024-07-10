@@ -594,6 +594,8 @@ def main():
     print ("Eexcess = ", Eexcess)
     print("Electricity Eexcess = ", ele_Eexcess)
     print("Water Eexcess = ", W_Eexcess) 
+    
+   
 
 
     
@@ -799,7 +801,7 @@ def return_graph6():
     sizes = resource_sums.values()
     colors = ['yellow', 'maroon', 'beige', 'purple']  
     # Create the pie chart
-    plt.figure(figsize=(10, 7))
+    plt.figure(figsize=(8, 5))
     plt.pie(sizes, labels=labels, colors=colors, startangle=90, autopct='%1.1f%%', textprops={'fontsize': 8})
     plt.title('Electricity Generated From Renewable Sources')
     plt.show()
@@ -822,7 +824,7 @@ def return_graph7():
     sizes = resource_sums.values()
     colors = ['pink', 'cyan', 'grey']  
     # Create the pie chart
-    plt.figure(figsize=(10, 7))
+    plt.figure(figsize=(8, 5))
     plt.pie(sizes, labels=labels, colors=colors, startangle=90, autopct='%1.1f%%', textprops={'fontsize': 8})
     plt.title('Water Pumped From Renewable Sources')
     plt.show()
@@ -830,7 +832,5 @@ def return_graph7():
     
     
     return graph
-    
 
-# Pie chart to split each sum of electricity generated
-    
+

@@ -1,94 +1,91 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <div id="content">
-
-
-     <div id="summary" class="section">
+    <div id="summary" class="section">
         <h1>Summary</h1>
-        <p>For this particular situation, the most optimized solution is:</p>
-        <p>Solar power = {{ solar_ind }}</p>
-        <p>Wind power = {{ wind_ind }}</p>
-        <p>Hydropower = {{ hydropower_ind }}</p>
-        <p>Biogas = {{ biogas_ind }}</p>
-        <p>Battery = {{ battery_ind }}</p>
-        <p>Biogas-powered water pump = {{ biogasWP_ind }}</p>
-        <p>Wind-powered water pump = {{ windWP_ind }}</p>
-        <p>Solar-powered water pump = {{ solarWP_ind }}</p>
-        <p>LPSP = {{ LPSP }}</p>
-        <p>LWSP = {{ LWSP }}</p>
-    </div> 
+        <ul>
+            <li>ACS = {{ ACS }}</li>
+            <li>Initial cost = {{ Initial_cost }}</li>
+            <li>Net present cost (NPC) = {{ NPC }}</li>
+            <li>The total amount of CO2 emitted: {{ CO2_emitted }}</li>
+            <li>HDI = {{ HDI }}</li>
+            <li>Eexcess: {{ Eexcess }}</li>
+        </ul>
+    </div>
 
     <div class="section">
         <h1>Renewable Energy Charts</h1>
 
-        {% if chart1 %}
-            <h2>Chart 1</h2>
-            <img src="data:image/png;base64,{{ chart1|safe }}" alt="Chart 1">
-        {% endif %}
+        <div class="chart-container">
+            {% if chart1 %}
+            <div class="chart-item">
+                <h2>Chart 1</h2>
+                <img src="data:image/png;base64,{{ chart1|safe }}" alt="Chart 1">
+            </div>
+            {% endif %}
+        </div>
 
-        {% if chart1_diesel %}
-        <h2>Chart 1 with diesel</h2>
-        <img src="data:image/png;base64,{{ chart1_diesel|safe }}" alt="Chart 1 with diesel">
-        {% endif %}
+        <div class="chart-container">
+            <div class="chart-group">
+                {% if chart2 %}
+                <div class="chart-item">
+                    <h2>Chart 2</h2>
+                    <img src="data:image/png;base64,{{ chart2 }}" alt="Chart 2">
+                </div>
+                {% endif %}
 
-        {% if chart1_without_diesel %}
-        <h2>Chart 1 without diesel</h2>
-        <img src="data:image/png;base64,{{ chart1_without_diesel|safe }}" alt="Chart 1 without diesel">
-        {% endif %}
+                {% if chart3 %}
+                <div class="chart-item">
+                    <h2>Chart 3</h2>
+                    <img src="data:image/png;base64,{{ chart3 }}" alt="Chart 3">
+                </div>
+                {% endif %}
+            </div>
+        </div>
 
-        {% if chart2 %}
-            <h2>Chart 2</h2>
-            <img src="data:image/png;base64,{{ chart2 }}" alt="Chart 2">
-        {% endif %}
+        <div class="chart-container">
+            <div class="chart-group">
+                {% if chart4 %}
+                <div class="chart-item">
+                    <h2>Chart 4</h2>
+                    <img src="data:image/png;base64,{{ chart4 }}" alt="Chart 4">
+                </div>
+                {% endif %}
 
-        {% if chart2_diesel %}
-        <h2>Chart 2 with diesel</h2>
-        <img src="data:image/png;base64,{{ chart2_diesel|safe }}" alt="Chart 2 with diesel">
-        {% endif %}
+                {% if chart5 %}
+                <div class="chart-item">
+                    <h2>Chart 5</h2>
+                    <img src="data:image/png;base64,{{ chart5 }}" alt="Chart 5">
+                </div>
+                {% endif %}
+            </div>
+        </div>
 
-        {% if chart2_without_diesel %}
-        <h2>Chart 2 without diesel</h2>
-        <img src="data:image/png;base64,{{ chart2_without_diesel|safe }}" alt="Chart 2 without diesel">
-        {% endif %}
+        <div class="chart-container">
+            <div class="chart-group">
+                {% if chart6 %}
+                <div class="chart-item">
+                    <h2>Electricity Generated</h2>
+                    <img src="data:image/png;base64,{{ chart6 }}" alt="Electricity Generated Pie Chart">
+                </div>
+                {% endif %}
 
-        {% if chart3 %}
-            <h2>Chart 3</h2>
-            <img src="data:image/png;base64,{{ chart3 }}" alt="Chart 3">
-        {% endif %}
+                {% if chart7 %}
+                <div class="chart-item">
+                    <h2>Water Pumped</h2>
+                    <img src="data:image/png;base64,{{ chart7 }}" alt="Water Pumped Pie Chart">
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 
-        {% if chart3_diesel %}
-        <h2>Chart 3 with diesel</h2>
-        <img src="data:image/png;base64,{{ chart3_diesel|safe }}" alt="Chart 3 with diesel">
-        {% endif %}
-
-        {% if chart3_without_diesel %}
-        <h2>Chart 3 without diesel</h2>
-        <img src="data:image/png;base64,{{ chart3_without_diesel|safe }}" alt="Chart 3 without diesel">
-        {% endif %}
-
-        {% if chart4 %}
-            <h2>Chart 4</h2>
-            <img src="data:image/png;base64,{{ chart4 }}" alt="Chart 4">
-        {% endif %}
-
-        {% if chart5 %}
-            <h2>Chart 5</h2>
-            <img src="data:image/png;base64,{{ chart5 }}" alt="Chart 5">
-        {% endif %}
-
-        {% if chart6 %}
-            <h2>Electricity Generated</h2>
-            <img src="data:image/png;base64,{{ chart6 }}" alt="Electricity Generated Pie Chart">
-        {% endif %}
-
-        {% if chart7 %}
-            <h2>Water Pumped</h2>
-            <img src="data:image/png;base64,{{ chart7 }}" alt="Water Pumped Pie Chart">
-        {% endif %}
+    <div class="section">
+        <button id="compare-button">Comparison?</button>
     </div>
 </div>
 {% endblock %}
-
 
 
 

@@ -647,7 +647,7 @@ def generate_pie_chart1(P_pv_ele, P_wind_ele, hydro_gen_ele, biogas_gen_ele):
     sizes = resource_sums.values()
     colors = ['yellow', 'maroon', 'beige', 'purple']
 
-    plt.figure(figsize=(10, 7))
+    plt.figure(figsize=(8, 5))
     plt.pie(sizes, labels=labels, colors=colors, startangle=90, autopct='%1.1f%%', textprops={'fontsize': 8})
     plt.title('Electricity Generated From Renewable Sources')
 
@@ -670,7 +670,7 @@ def generate_pie_chart2(Q_bio_pump, Q_pv_pump, W_wind_pump):
     sizes = resource_sums.values()
     colors = ['pink', 'cyan', 'grey']
 
-    plt.figure(figsize=(10, 7))
+    plt.figure(figsize=(8, 5))
     plt.pie(sizes, labels=labels, colors=colors, startangle=90, autopct='%1.1f%%', textprops={'fontsize': 8})
     plt.title('Water Pumped From Renewable Sources')
 
