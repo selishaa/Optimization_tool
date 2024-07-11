@@ -3,90 +3,115 @@
 {% block content %}
 <div id="content">
     <h1>Demographic Information</h1>
-    <form action="{% url 'your_form_submission_view' %}" method="post">
+    <form action="{% url 'your_form_submission_view' %}" method="POST">
         {% csrf_token %}
-        <div class="form-group">
-            <label for="population">Population:</label>
-            <input type="number" id="population" name="population" required>
-        </div>
-        <div class="form-group">
-            <label for="household">Household:</label>
-            <input type="number" id="household" name="household" required>
-        </div>
-        <div class="form-group">
-            <label for="acres">Acres:</label>
-            <input type="number" id="acres" name="acres" required>
-        </div>
-        <div class="form-group">
-            <label for="cattle">Cattle:</label>
-            <input type="number" id="cattle" name="cattle" required>
-        </div>
-        <div class="form-group">
-            <button type="submit">Submit</button>
-        </div>
+        <label for="population">Population:</label>
+        <input type="number" id="population" name="population" required><br>
+
+        <label for="household">Household:</label>
+        <input type="number" id="household" name="household" required><br>
+
+        <label for="acre">Acre:</label>
+        <input type="number" id="acre" name="acre" required><br>
+
+        <label for="cattle">Cattle:</label>
+        <input type="number" id="cattle" name="cattle" required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <form action="{% url 'optimization_tool' %}" method="get">
+        <button type="submit">Next</button>
     </form>
 </div>
+
 {% endblock %}
 
+
 <style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f9f9f9;
-        padding: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
-
-    #content {
-        max-width: 600px;
-        margin: 20px auto;
-        padding: 30px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-        font-size: 32px;
-        margin-bottom: 20px;
-        text-align: center;
-        color: #0066cc;
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-        color: #444;
-    }
-
-    input[type="number"] {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    button {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-
-    button:hover {
-        background-color: #45a049;
-    }
+  
+        /* General styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    
+        #content {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+    
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #0066cc;
+        }
+    
+        .form-group {
+            margin-bottom: 15px;
+        }
+    
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+    
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+    
+        /* Button styling */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+    
+        .btn:hover {
+            background-color: #45a049;
+        }
+    
+        .btn-submit {
+            background-color: #4CAF50;
+        }
+    
+        .btn-next {
+            background-color: #007bff;
+        }
+    
+        .btn-submit:hover {
+            background-color: #45a049;
+        }
+    
+        .btn-next:hover {
+            background-color: #0056b3;
+        }
+   
+    
 </style>

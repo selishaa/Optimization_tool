@@ -1,6 +1,6 @@
 #dir to begin server is /storefront
 #importing functions from other modules that will be called in this one 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import matplotlib
 matplotlib.use('Agg') 
@@ -49,6 +49,22 @@ def optimization_view(request):
 
 def demographic_view(request):
     return render(request, 'demo.html', {})
+
+def your_form_submission_view(request):
+    if request.method == 'POST':
+        # Process the form data here
+        population = request.POST.get('population')
+        household = request.POST.get('household')
+        acre = request.POST.get('acre')
+        cattle = request.POST.get('cattle')
+        
+        # Do something with the data (e.g., save to database)
+        
+        return redirect('home')  # Redirect to home or any other page after processing
+    else:
+        return redirect('demographic')
+
+
 
 #trial of a graph
 def plot_view(request):
