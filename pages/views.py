@@ -58,7 +58,7 @@ def your_form_submission_view(request):
         acre = request.POST.get('acre')
         cattle = request.POST.get('cattle')
         
-        # Do something with the data (e.g., save to database)
+       
         
         return redirect('home')  # Redirect to home or any other page after processing
     else:
