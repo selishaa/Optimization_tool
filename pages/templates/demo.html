@@ -3,7 +3,7 @@
 {% block content %}
 <div id="content">
     <h1>Demographic Information</h1>
-    <form action="{% url 'your_form_submission_view' %}" method="POST">
+    <form id="demographicForm" action="{% url 'your_form_submission_view' %}" method="POST">
         {% csrf_token %}
         <label for="population">Population:</label>
         <input type="number" id="population" name="population" required><br>
@@ -17,14 +17,37 @@
         <label for="cattle">Cattle:</label>
         <input type="number" id="cattle" name="cattle" required><br>
 
-        <button type="submit">Submit</button>
-    </form>
-
-    <form action="{% url 'optimization_tool' %}" method="get">
-        <button type="submit">Next</button>
+        <button type="submit" id="saveNextButton">Save & Next</button>
     </form>
 </div>
 
+<script>
+    document.getElementById('demographicForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        var form = event.target;
+        var formData = new FormData(form);
+
+        fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: {
+                'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        }).then(function(response) {
+            if (response.ok) {
+                // Redirect to the next page if the form submission is successful
+                window.location.href = "{% url 'optimization_tool' %}";
+            } else {
+                // Handle the error if needed
+                alert('Failed to submit the form. Please try again.');
+            }
+        }).catch(function(error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        });
+    });
+</script>
 {% endblock %}
 
 

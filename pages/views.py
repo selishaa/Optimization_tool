@@ -60,9 +60,8 @@ def your_form_submission_view(request):
         
        
         
-        return redirect('home')  # Redirect to home or any other page after processing
-    else:
-        return redirect('demographic')
+    return redirect('optimization_tool') # Redirect to the next view
+    return render(request, 'demo.html', {})
 
 
 
