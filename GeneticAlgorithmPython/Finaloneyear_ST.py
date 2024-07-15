@@ -114,7 +114,7 @@ def minimize(individual):     # define fitness function
     MaintainCost = (1+f)**n_maintain * (x_1 * CM_PV + x_2 * CM_WT + x_3 * CM_HT + x_4 * CM_BG + x_5 * CM_CB
                                + x_6 * CM_BP + x_7 * CM_WP + x_8 * CM_PP)
     ReplaceCost = SFF * (CR_BG + CR_CB + CR_BP)
-    ACS = InitialCost + MaintainCost + ReplaceCost      # minimize the cost = ACS
+    ACS = InitialCost + MaintainCost + ReplaceCost      #  minimize the cost = ACS
     return ACS,
 
 toolbox.register("evaluate", minimize)
@@ -395,7 +395,7 @@ def eaSimpleWithElitism(population, toolbox, cxpb, mutpb, ngen, stats=None,
 
     return population, logbook
 
-def main():
+def main(request):
     # create initial population (generation 0):
     population = toolbox.populationCreator(n=POPULATION_SIZE)
 
@@ -546,12 +546,14 @@ def main():
     InitialCostElec = CRF * (x_1 *PRATING_PV *CC_PV + x_2 * PRATING_WT * CC_WT + x_3 * PRATING_HT * CC_HT
                          + x_4 *PRATING_BG * CC_BG + x_5 * PRATING_CB * CC_CB)
     InitialCostWater = CRF * (x_6 * CC_BP + x_7 * CC_WP + x_8 * CC_PP)
-    InitialCost = InitialCostElec + InitialCostWater
+    InitialCost = InitialCostElec + InitialCostWater # important
+    
     MaintainCost = (1+f)**n_maintain * (x_1 * CM_PV + x_2 * CM_WT + x_3 * CM_HT + x_4 * CM_BG + x_5 * CM_CB
                                + x_6 * CM_BP + x_7 * CM_WP + x_8 * CM_PP)
     ReplaceCost = SFF * (CR_BG + CR_CB + CR_BP)
-    ACS = InitialCost + MaintainCost + ReplaceCost      # minimize the cost = ACS
-    NPC = ACS/CRF
+    ACS = InitialCost + MaintainCost + ReplaceCost      # important minimize the cost = ACS
+    NPC = ACS/CRF # important
+    
     print("ACS = ", ACS)
     print("Initial cost = ", InitialCost)
     print("Net present cost (NPC) = ", NPC) 
@@ -590,8 +592,18 @@ def main():
     W_Eexcess = (Q_pv_pump-Load_W_total)+(W_wind_pump-Load_W_total)+(Q_bio_pump-Load_W_total)
     Eexcess = ele_Eexcess + W_Eexcess
     HDI_total = 0.0978*math.log(((load_total+Load_W_total)+min(0.3*Eexcess,0.5*(load_total+Load_W_total)))/700)-0.0319
+    
+    # Store important values in session
+    request.session['InitialCost'] = InitialCost
+    request.session['CO2_total'] = CO2_total
+    request.session['HDI_total'] = HDI_total
+    request.session['Eexcess'] = Eexcess
+    request.session['ACS'] = ACS
+    request.session['NPC'] = NPC
+    
+    
     print("HDI = ", HDI_total) #important
-    print ("Eexcess = ", Eexcess)
+    print ("Eexcess = ", Eexcess) # important
     print("Electricity Eexcess = ", ele_Eexcess)
     print("Water Eexcess = ", W_Eexcess) 
     

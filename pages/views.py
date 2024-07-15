@@ -53,14 +53,12 @@ def demographic_view(request):
 def your_form_submission_view(request):
     if request.method == 'POST':
         # Process the form data here
-        population = request.POST.get('population')
-        household = request.POST.get('household')
-        acre = request.POST.get('acre')
-        cattle = request.POST.get('cattle')
+        request.session['population'] = request.POST.get('population')
+        request.session['household'] = request.POST.get('household')
+        request.session['acre'] = request.POST.get('acre')
+        request.session['cattle'] = request.POST.get('cattle')
         
-       
-        
-    return redirect('optimization_tool') # Redirect to the next view
+        return redirect('optimization_tool') # Redirect to the next view
     return render(request, 'demo.html', {})
 
 
@@ -165,16 +163,30 @@ def calculations_view(request):
     # #Optimized values
 
     ind = [1, 2, 3, 4, 5, 6, 7, 8]
-    mainYear()
+    mainYear(request)
     #solar, wind, hydropower, biogas, battery, biogas-powered water pump, wind-powered water pump, solar-powered water pump
     individual = bestYear()
     
-    ACS = 26865.804379422112  # Replace with your actual ACS calculation
-    Initial_cost = 15814.384299089257  # Replace with your actual Initial cost calculation
-    NPC = 511408.13195292  # Replace with your actual NPC calculation
-    CO2_emitted = 1.600643819103928  # Replace with your actual CO2 emitted calculation
-    HDI = 0.3806041481619234  # Replace with your actual HDI calculation
-    Eexcess = -312393.5669519148
+    # ACS = 26865.804379422112  # Replace with your actual ACS calculation
+    # Initial_cost = 15814.384299089257  # Replace with your actual Initial cost calculation
+    # NPC = 511408.13195292  # Replace with your actual NPC calculation
+    # CO2_emitted = 1.600643819103928  # Replace with your actual CO2 emitted calculation
+    # HDI = 0.3806041481619234  # Replace with your actual HDI calculation
+    # Eexcess = -312393.5669519148
+    
+    ACS = request.session.get('ACS')
+    Initial_cost = request.session.get('InitialCost')
+    NPC = request.session.get('NPC')
+    CO2_emitted = request.session.get('CO2_total')
+    HDI = request.session.get('HDI_total')
+    Eexcess = request.session.get('Eexcess')
+    
+    print("Eexcess: ", Eexcess)
+    print("ACS: ", ACS)
+    print("Initial_cost: ", Initial_cost)
+    print("NPC: ", NPC)
+    print("CO2_emitted: ", CO2_emitted)
+    print("HDI: ", HDI)
 
   
     LPSP_print = LPSP
@@ -495,7 +507,7 @@ def calculate_renewable_energy(request):
     bio_energy = get_bio()
 
     # Optimized values
-    mainYear()
+    mainYear(request)
     individual = bestYear()
     solar_ind, wind_ind, hydropower_ind, biogas_ind, battery_ind, biogasWP_ind, windWP_ind, solarWP_ind = individual
 
