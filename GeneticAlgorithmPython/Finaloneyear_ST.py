@@ -3,11 +3,15 @@ from deap import creator
 from deap import tools, algorithms
 from pages import elitism
 from pages.utils import get_graph
+import openpyxl
 
 import random
 import numpy as np 
 import math
 import pandas as pd 
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+
  
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -214,17 +218,32 @@ n_pv = 0.7
 pw = 998 # kg/m3: the density of water 
 g = 9.8
 
-# Water load
+nP = 700  # population
+hh = 120  # household
+hectors = 80
+cattle = 450
+
+
+    
 W_domestic_file = "GeneticAlgorithmPython/water_usage_data_final_sample.xlsx"
 W_domestic_s_row = 1
 W_domestic_e_row = 864
-W_domestic_data = pd.read_excel(W_domestic_file, header = None, nrows= W_domestic_e_row - W_domestic_s_row + 1, usecols= [9], skiprows= range(0, W_domestic_s_row))
+wb = openpyxl.load_workbook(W_domestic_file)
+sheet = wb.active
+for cell in sheet[10]:  
+    if isinstance(cell.value, (int, float)): 
+        cell.value = (cell.value * nP) / 700
+wb.save("GeneticAlgorithmPython/water_usage_data_final_sample_updated.xlsx")
+
+
+W_domestic_data = pd.read_excel("GeneticAlgorithmPython/water_usage_data_final_sample_updated.xlsx", header = None, nrows= W_domestic_e_row - W_domestic_s_row + 1, usecols= [9], skiprows= range(0, W_domestic_s_row))
 W_domestic = W_domestic_data.values.flatten()
-W_irrigation = 80 + 100 * random.uniform(0,1) * np.ones(No_data)
-W_load = W_domestic + W_irrigation
+W_irrigation = (80 + 100 * random.uniform(0,1) * np.ones(No_data))/80*hectors   #/80*hectors
+W_cattle = np.ones(No_data) * random.uniform(0.75,1) /24 * 0.1 * cattle
+W_load = W_domestic + W_irrigation + W_cattle
 W_res = np.zeros(No_data)
 
-# Loss of water supply probability:
+    # Loss of water supply probability:
 LWS = np.zeros(No_data)
 
 
@@ -396,6 +415,8 @@ def eaSimpleWithElitism(population, toolbox, cxpb, mutpb, ngen, stats=None,
     return population, logbook
 
 def main(request):
+    
+   
     # create initial population (generation 0):
     population = toolbox.populationCreator(n=POPULATION_SIZE)
 

@@ -1,62 +1,62 @@
 /* Global reset and styles */
 * {
     margin: 0;
-    padding: 6px;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9f9f9;
+    background-color: #f2f2f2;
     line-height: 1.6;
     padding: 20px;
 }
 
 /* Container for the content */
 #content {
-    max-width: 900px;
+    max-width: 800px;
     margin: 20px auto;
-    padding: 30px;
+    padding: 20px;
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 /* Headings */
 #content h1 {
-    font-size: 32px;
+    font-size: 36px;
     margin-bottom: 20px;
     text-align: center;
-    color: #0066cc;
+    color: #007bff; /* Blue color for headings */
 }
 
 #content h2 {
-    font-size: 24px;
+    font-size: 30px;
     margin-bottom: 15px;
     text-align: center;
-    color: #004d99;
+    color: #004d99; /* Slightly darker blue for sub-headings */
 }
 
 /* Paragraphs */
 #content p {
     margin-bottom: 20px;
-    color: #444;
+    color: #555; /* Slightly darker gray color for paragraphs */
     font-size: 18px;
-    text-align: center;
+    text-align: justify;
 }
 
 /* Summary */
 #summary {
     padding: 20px;
     background-color: #e6f7ff;
-    border-left: 5px solid #0066cc;
+    border-left: 5px solid #007bff; /* Match the blue from h1 */
     border-radius: 5px;
     margin-bottom: 20px;
 }
 
 #summary p {
     margin-bottom: 10px;
-    color: #003366;
+    color: #003366; /* Darker blue for summary text */
     font-size: 18px;
 }
 
@@ -80,8 +80,8 @@ body {
 }
 
 .chart-group img {
-    width: calc(30px - 10px); /* Adjust as needed */
-    max-width: 50%;
+    width: 100%; /* Adjust image width as needed */
+    max-width: 100%;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -94,11 +94,11 @@ body {
     }
 
     #content h1 {
-        font-size: 24px;
+        font-size: 30px;
     }
 
     #content h2 {
-        font-size: 20px;
+        font-size: 24px;
     }
 
     #content p {
@@ -106,7 +106,7 @@ body {
     }
 
     .chart-group img {
-        width: 50%; /* Full width on small screens */
+        width: 100%; /* Full width on small screens */
     }
 }
 
@@ -121,10 +121,9 @@ body {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: fit-content; /* Adjust button width to fit content */
 }
 
 #compare-button:hover {
     background-color: #45a049; /* Darker green on hover */
-    display: block;
-    width: 100%;
 }

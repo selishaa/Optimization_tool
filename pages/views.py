@@ -19,6 +19,7 @@ from GeneticAlgorithmPython.Finaloneyear_ST import bestYear, LPSP, LWSP, return_
 
 
 
+
 from base64 import b64encode
 from django.http import JsonResponse
 
@@ -50,15 +51,22 @@ def optimization_view(request):
 def demographic_view(request):
     return render(request, 'demo.html', {})
 
+session_data = {
+    'population': None,
+    'household': None,
+    'hectors': None,
+    'cattle': None
+}
+
 def your_form_submission_view(request):
     if request.method == 'POST':
         # Process the form data here
         request.session['population'] = request.POST.get('population')
         request.session['household'] = request.POST.get('household')
-        request.session['acre'] = request.POST.get('acre')
+        request.session['hectors'] = request.POST.get('hectors')
         request.session['cattle'] = request.POST.get('cattle')
         
-        return redirect('optimization_tool') # Redirect to the next view
+        return redirect('optimization_tool')  # Redirect to the next view
     return render(request, 'demo.html', {})
 
 
