@@ -13,7 +13,7 @@ from .NoElitismTrial import main, best
 
 # GeneticAlgorithmPython.Finaloneyear_ST
 from GeneticAlgorithmPython.Finaloneyear_ST import main as mainYear
-from GeneticAlgorithmPython.Finaloneyear_ST import bestYear, LPSP, LWSP, return_graph1, return_graph2, return_graph3, return_graph4, return_graph5, return_graph6, return_graph7 
+from GeneticAlgorithmPython.Finaloneyear_ST import bestYear, LPSP, LWSP,  return_graph2, return_graph3, return_graph4, return_graph5, return_graph6, return_graph7 
 
 
 
@@ -200,7 +200,7 @@ def calculations_view(request):
     LPSP_print = LPSP
 
 
-    chart1 = return_graph1
+   
     chart2 = return_graph2
     chart3 = return_graph3
     chart4 = return_graph4
@@ -225,7 +225,7 @@ def calculations_view(request):
      "Eexcess": Eexcess,
      "individual": individual,
      "LPSP_print": LPSP_print,
-    "chart1": chart1, "chart2": chart2, "chart3": chart3, "chart4": chart4, "chart5": chart5, "chart6": chart6, "chart7": chart7
+     "chart2": chart2, "chart3": chart3, "chart4": chart4, "chart5": chart5, "chart6": chart6, "chart7": chart7
    
     })
    
@@ -520,7 +520,7 @@ def calculate_renewable_energy(request):
     solar_ind, wind_ind, hydropower_ind, biogas_ind, battery_ind, biogasWP_ind, windWP_ind, solarWP_ind = individual
 
     # Get charts from the Genetic Algorithm module
-    chart1 = return_graph1()
+   
     chart2 = return_graph2()
     chart3 = return_graph3()
     chart4 = return_graph4()
