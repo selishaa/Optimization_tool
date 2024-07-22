@@ -14,7 +14,7 @@ body {
 
 /* Container for the content */
 #content {
-    max-width: 300px;
+    max-width: 1200px; /* Increased width for better use of space */
     margin: 20px auto;
     padding: 30px;
     background-color: #fff;
@@ -29,8 +29,6 @@ body {
     text-align: center;
     color: #0066cc;
 }
-
-
 
 /* Paragraphs */
 #content p {
@@ -64,20 +62,22 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.chart-item {
-    text-align: center;
-    margin-bottom: 10px; /* Space between chart items */
-}
-
+/* Flex container for chart groups */
 .chart-group {
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 30px; /* Increased space between chart groups */
+    justify-content: space-between; /* Space between charts */
+    flex-wrap: wrap; /* Allow wrapping to new line if needed */
+}
+
+.chart-item {
+    flex: 1 1 48%; /* Flex-grow, flex-shrink, and flex-basis for spacing */
+    margin: 10px; /* Margin for spacing between charts */
+    text-align: center;
 }
 
 .chart-group img {
-    width: 50%; /* Adjust image width as needed */
-    max-width: 50%;
+    width: 100%; /* Use full width of the chart item */
+    max-width: 100%; /* Ensure images don’t overflow */
     height: auto;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -87,8 +87,8 @@ body {
 #compare-button {
     display: block;
     margin: 20px auto;
-    padding: 12px 24px;
-    font-size: 18px;
+    padding: 16px 32px; /* Increased padding for a larger button */
+    font-size: 20px; /* Larger font size for better visibility */
     background-color: #4CAF50; /* Green button background */
     color: white;
     border: none;
