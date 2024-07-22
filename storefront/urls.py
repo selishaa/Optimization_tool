@@ -16,7 +16,7 @@ Including another URLconf
 #importing the functions from other modules urls will take the user to
 from django.contrib import admin
 from django.urls import path, include
-from pages.views import home_view, about_view, optimization_view, operations_view, plot_view, calculations_view, results_view, demographic_view, your_form_submission_view
+from pages.views import home_view, about_view, optimization_view, operations_view, plot_view, calculations_view, results_view, demographic_view, your_form_submission_view, comparison
 
 #set up for where each url takes the user
 urlpatterns = [
@@ -30,6 +30,7 @@ urlpatterns = [
     path('optimization_tool/optimization', calculations_view, name = 'optimization'), #shows results
     path('demographic/', demographic_view, name='demographic'), #shows demographic data
     path('form_submission/', your_form_submission_view, name='your_form_submission_view'),
+    path('comparison/', comparison, name='comparison'),
    
 
 ]

@@ -87,15 +87,16 @@ body {
 #compare-button {
     display: block;
     margin: 20px auto;
-    padding: 16px 32px; /* Increased padding for a larger button */
-    font-size: 20px; /* Larger font size for better visibility */
+    padding: 12px 24px;
+    font-size: 18px;
     background-color: #4CAF50; /* Green button background */
     color: white;
-    border: none;
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: fit-content; /* Adjust button width to fit content */
+    width: fit-content; /* Adjust width to fit content */
 }
 
 #compare-button:hover {
