@@ -2,8 +2,178 @@
 {% load static %}
 
 {% block content %}
+<style>
+    #comparison {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    
+    h1 {
+        font-size: 28px;
+        margin-bottom: 30px;
+        color: #333;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 22px;
+        color: #666;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .comparison-section {
+        margin-bottom: 60px;
+    }
+
+    .comparison-container {
+        display: flex;
+        justify-content: center;
+        gap: 40px; /* Space between images */
+        flex-wrap: wrap;
+    }
+
+    .comparison-container div {
+        flex: 1;
+        max-width: 400px; /* Limit maximum width */
+        min-width: 300px; /* Ensure images don’t get too small */
+        text-align: center;
+    }
+
+    .comparison-container img {
+        width: 100%;
+        height: auto;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Enhanced shadow for better distinction */
+        margin-bottom: 15px;
+    }
+
+    .figure-title {
+        font-size: 18px;
+        color: #444;
+        margin-top: 5px;
+    }
+
+    .comparison-table {
+        width: 100%;
+        margin: 20px 0;
+        border-collapse: collapse;
+    }
+
+    .comparison-table, .comparison-table th, .comparison-table td {
+        border: 1px solid #ddd;
+    }
+
+    .comparison-table th, .comparison-table td {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .comparison-table th {
+        background-color: #f4f4f4;
+    }
+</style>
+
 <div id="comparison">
-    <h1>Comparison Page</h1>
-    <!-- Add your comparison content here -->
+    <h1>Microgrid with Diesel vs. SIRES vs. Microgrid without Diesel</h1>
+
+    <div class="comparison-section">
+        <h2>Key Metrics</h2>
+        <table class="comparison-table">
+            <tr>
+                <th>Metric</th>
+                <th>Microgrid with Diesel</th>
+                <th>SIRES</th>
+                <th>Microgrid without Diesel</th>
+            </tr>
+            <tr>
+                <td>ACS</td>
+                <td>{{ ACS1 }}</td>
+                <td>{{ ACS }}</td>
+                <td>{{ ACSwd }}</td>
+            </tr>
+            <tr>
+                <td>Initial Cost</td>
+                <td>{{ Initial_cost1 }}</td>
+                <td>{{ Initial_cost }}</td>
+                <td>{{ Initial_costwd }}</td>
+            </tr>
+            <tr>
+                <td>NPC</td>
+                <td>{{ NPC1 }}</td>
+                <td>{{ NPC }}</td>
+                <td>{{ NPCwd }}</td>
+            </tr>
+            <tr>
+                <td>CO2 Emitted</td>
+                <td>{{ CO2_emitted1 }}</td>
+                <td>{{ CO2_emitted }}</td>
+                <td>{{ CO2_emittedwd }}</td>
+            </tr>
+            <tr>
+                <td>HDI</td>
+                <td>{{ HDI1 }}</td>
+                <td>{{ HDI }}</td>
+                <td>{{ HDIwd }}</td>
+            </tr>
+           
+        </table>
+    </div>
+    
+
+    <div class="comparison-section">
+        <h2>Generation Overview</h2>
+        <div class="comparison-container">
+            <div>
+                <img src="data:image/png;base64,{{ fig1 }}" alt="Microgrid with Diesel Generation Overview">
+                <div class="figure-title">Microgrid with Diesel: Generation Overview</div>
+            </div>
+            <div>
+                <img src="data:image/png;base64,{{ chart6 }}" alt="SIRES Generation Overview">
+                <div class="figure-title">SIRES: Generation Overview</div>
+            </div>
+            <div>
+                <img src="data:image/png;base64,{{ figwd1 }}" alt="Microgrid without Diesel Generation Overview">
+                <div class="figure-title">Microgrid without Diesel: Generation Overview</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comparison-section">
+        <h2>Electricity Load</h2>
+        <div class="comparison-container">
+            <div>
+                <img src="data:image/png;base64,{{ fig2 }}" alt="Microgrid with Diesel Electricity Load">
+                <div class="figure-title">Microgrid with Diesel: Electricity Load</div>
+            </div>
+            <div>
+                <img src="data:image/png;base64,{{ chart5 }}" alt="SIRES Electricity Load">
+                <div class="figure-title">SIRES: Electricity Load</div>
+            </div>
+            <div>
+                <img src="data:image/png;base64,{{ figwd2 }}" alt="Microgrid without Diesel Electricity Load">
+                <div class="figure-title">Microgrid without Diesel: Electricity Load</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comparison-section">
+        <h2>Loss of Power</h2>
+        <div class="comparison-container">
+            <div>
+                <img src="data:image/png;base64,{{ fig3 }}" alt="Microgrid with Diesel Loss of Power">
+                <div class="figure-title">Microgrid with Diesel: Loss of Power</div>
+            </div>
+            <div>
+                <img src="data:image/png;base64,{{ chart3 }}" alt="SIRES Loss of Power">
+                <div class="figure-title">SIRES: Loss of Power</div>
+            </div>
+            <div>
+                <img src="data:image/png;base64,{{ figwd3 }}" alt="Microgrid without Diesel Loss of Power">
+                <div class="figure-title">Microgrid without Diesel: Loss of Power</div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

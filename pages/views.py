@@ -15,6 +15,10 @@ from .NoElitismTrial import main, best
 from GeneticAlgorithmPython.Finaloneyear_ST import main as mainYear
 from GeneticAlgorithmPython.Finaloneyear_ST import bestYear, LPSP, LWSP,  return_graph2, return_graph3, return_graph4, return_graph5, return_graph6, return_graph7 
 
+from GeneticAlgorithmPython.Microgrid_with_diesel_ST import fig1, fig2, fig3
+from GeneticAlgorithmPython.Microgrid_without_diesel_ST import figwd1, figwd2, figwd3
+
+
 
 
 
@@ -58,8 +62,89 @@ session_data = {
     'cattle': None
 }
 
+from django.shortcuts import render
+
 def comparison(request):
-    return render(request, 'comparison.html')
+    # Optimized values
+    ind = [1, 2, 3, 4, 5, 6, 7, 8]
+    mainYear(request)
+    # Solar, wind, hydropower, biogas, battery, biogas-powered water pump, wind-powered water pump, solar-powered water pump
+    individual = bestYear()
+    
+    # SIRES data
+    ACS = request.session.get('ACS')
+    Initial_cost = request.session.get('InitialCost')
+    NPC = request.session.get('NPC')
+    CO2_emitted = request.session.get('CO2_total')
+    HDI = request.session.get('HDI_total')
+    
+    
+    # Microgrid with diesel data
+    ACS1 = 27334.18616181368
+    Initial_cost1 = 15259.809292713882
+    NPC1 = 520324.0850727574
+    CO2_emitted1 = 3.392324490149929
+    HDI1 = 0.33732247130951326
+    
+    
+    # Microgrid without diesel data
+    ACSwd = 26489.274086932433
+    Initial_costwd = 15407.817652552336
+    NPCwd = 504240.63192997914
+    CO2_emittedwd = 1.8336755819857073
+    HDIwd = 0.3742939469592647
+    
+    
+    
+    print("ACS: ", ACS)
+    print("Initial_cost: ", Initial_cost)
+    print("NPC: ", NPC)
+    print("CO2_emitted: ", CO2_emitted)
+    print("HDI: ", HDI)
+    
+    chart3 = return_graph3()  # Ensure these functions are defined
+    chart5 = return_graph5()
+    chart6 = return_graph6()
+
+    fig1_data = fig1()
+    fig2_data = fig2()
+    fig3_data = fig3()
+    figwd1_data = figwd1()  
+    figwd2_data = figwd2()
+    figwd3_data = figwd3()
+    
+    return render(request, 'comparison.html', {
+        "fig1": fig1_data,
+        "fig2": fig2_data,
+        "fig3": fig3_data,
+        "figwd1": figwd1_data,  
+        "figwd2": figwd2_data,      
+        "figwd3": figwd3_data,
+        "ACS": ACS,
+        "Initial_cost": Initial_cost,
+        "NPC": NPC,
+        "CO2_emitted": CO2_emitted,
+        "HDI": HDI,
+        
+        "chart3": chart3,   
+        "chart5": chart5,
+        "chart6": chart6,
+        "ACS1": ACS1,     
+        "Initial_cost1": Initial_cost1,
+        "NPC1": NPC1,
+        "CO2_emitted1": CO2_emitted1,
+        "HDI1": HDI1,
+        
+        "ACSwd": ACSwd,
+        "Initial_costwd": Initial_costwd,
+        "NPCwd": NPCwd,
+        "CO2_emittedwd": CO2_emittedwd,
+        "HDIwd": HDIwd,
+        
+    })
+
+
+
 
 def your_form_submission_view(request):
     if request.method == 'POST':
@@ -70,7 +155,9 @@ def your_form_submission_view(request):
         request.session['cattle'] = request.POST.get('cattle')
         
         return redirect('optimization_tool')  # Redirect to the next view
-    return render(request, 'demo.html', {})
+    return render(request, 'demo.html', {
+        
+    })
 
 
 
@@ -181,12 +268,7 @@ def calculations_view(request):
     #solar, wind, hydropower, biogas, battery, biogas-powered water pump, wind-powered water pump, solar-powered water pump
     individual = bestYear()
     
-    # ACS = 26865.804379422112  # Replace with your actual ACS calculation
-    # Initial_cost = 15814.384299089257  # Replace with your actual Initial cost calculation
-    # NPC = 511408.13195292  # Replace with your actual NPC calculation
-    # CO2_emitted = 1.600643819103928  # Replace with your actual CO2 emitted calculation
-    # HDI = 0.3806041481619234  # Replace with your actual HDI calculation
-    # Eexcess = -312393.5669519148
+    
     
     ACS = request.session.get('ACS')
     Initial_cost = request.session.get('InitialCost')
@@ -230,6 +312,8 @@ def calculations_view(request):
      "HDI": HDI,
      "Eexcess": Eexcess,
      "individual": individual,
+     
+     
      "LPSP_print": LPSP_print,
      "chart2": chart2, "chart3": chart3, "chart4": chart4, "chart5": chart5, "chart6": chart6, "chart7": chart7
    

@@ -8,12 +8,7 @@
     <div id="summary" class="section">
         <h1>Summary</h1>
         <ul>
-            <li>ACS = {{ ACS }}</li>
-            <li>Initial cost = {{ Initial_cost }}</li>
-            <li>Net present cost (NPC) = {{ NPC }}</li>
-            <li>The total amount of CO2 emitted: {{ CO2_emitted }}</li>
-            <li>HDI = {{ HDI }}</li>
-            <li>Eexcess: {{ Eexcess }}</li>
+            <li>m {{ Eexcess }}</li>
         </ul>
     </div>
 
@@ -25,14 +20,14 @@
             <div class="chart-group">
                 {% if chart2 %}
                 <div class="chart-item">
-                    <h2>Chart 2</h2>
+                    <h2>Electricity Load</h2>
                     <img src="data:image/png;base64,{{ chart2 }}" alt="Chart 2">
                 </div>
                 {% endif %}
 
                 {% if chart3 %}
                 <div class="chart-item">
-                    <h2>Chart 3</h2>
+                    <h2>Loss of Power Supply</h2>
                     <img src="data:image/png;base64,{{ chart3 }}" alt="Chart 3">
                 </div>
                 {% endif %}
@@ -43,14 +38,14 @@
             <div class="chart-group">
                 {% if chart4 %}
                 <div class="chart-item">
-                    <h2>Chart 4</h2>
+                    <h2>Loss of Water Supply </h2>
                     <img src="data:image/png;base64,{{ chart4 }}" alt="Chart 4">
                 </div>
                 {% endif %}
 
                 {% if chart5 %}
                 <div class="chart-item">
-                    <h2>Chart 5</h2>
+                    <h2>Min & Average Fitness</h2>
                     <img src="data:image/png;base64,{{ chart5 }}" alt="Chart 5">
                 </div>
                 {% endif %}
