@@ -1,19 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>About Us</h1>
-<p>This is the about us page which will have a description of the project, the people behind it and our goals</p>
-<p>Page was accessed by: </p>
-{{request.user}}
+<p>This is the about us page which will have a description of the project, the people behind it, and our goals.</p>
+<p>Page was accessed by: {{ request.user }}</p>
 <p>
-    {{ my_team }}, {{ my_number }}, {{ my_list }}
+    Our Team: {{ my_team }}<br>
+    Contact Number: {{ my_number }}<br>
+    List of Values: {{ my_list }}
 </p>
+
+<h2>Project Description</h2>
+<p>Our project aims to revolutionize the way communities interact with renewable energy solutions. By integrating advanced algorithms and user-friendly web interfaces, we provide personalized insights and actionable data to help rural areas transition to sustainable energy sources.</p>
+
+<h2>Our Goals</h2>
 <ul>
-    <li>Item 1</li>
-    <li>Item 2</li>
+    <li>Empower communities with accurate, data-driven insights.</li>
+    <li>Optimize renewable energy systems to maximize cost-effectiveness.</li>
+    <li>Ensure sustainable and reliable energy solutions for all.</li>
 </ul>
+
+<h2>Meet Our Team</h2>
+<p>We are a diverse group of passionate individuals dedicated to making a positive impact on the world through innovative technology and sustainable practices.</p>
+
+<h3>Values</h3>
 <ul>
-{% for my_item in my_values %}
-    <li>{{my_item}}</li>
-{% endfor %}
+    {% for my_item in my_values %}
+        <li>{{ my_item }}</li>
+    {% endfor %}
 </ul>
 {% endblock %}
