@@ -1,23 +1,149 @@
 {% extends 'base.html' %}
 
+{% block title %}Demographic Information{% endblock %}
+
 {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            position: relative; /* Ensure body position is relative */
+            min-height: 100vh; /* Ensure body covers the viewport height */
+            overflow: hidden; /* Prevent scrollbars caused by pseudo-element */
+        }
+        
+        /* Background image styling with dim effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/static/images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            z-index: -1; /* Ensure it’s behind the content */
+        }
+        
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay with 60% opacity */
+            z-index: -1; /* Ensure it’s behind the content */
+        }
+        
+        
+
+        #content {
+            margin-top: 60px; /* Adjust this value based on the height of your navbar */
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid #a1d99b;
+            position: relative; /* Ensure content is above the background */
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #006600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #006600;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #a1d99b;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            border-color: #74c476;
+            outline: none;
+        }
+
+        /* Button styling */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .btn-next {
+            background-color: #28a745;
+        }
+
+        .btn-next:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
 <div id="content">
     <h1>Demographic Information</h1>
     <form id="demographicForm" action="{% url 'your_form_submission_view' %}" method="POST">
         {% csrf_token %}
-        <label for="population">Population:</label>
-        <input type="number" id="population" name="population" required><br>
+        <div class="form-group">
+            <label for="population">Population:</label>
+            <input type="number" id="population" name="population" required>
+        </div>
 
-        <label for="household">Household:</label>
-        <input type="number" id="household" name="household" required><br>
+        <div class="form-group">
+            <label for="household">Household:</label>
+            <input type="number" id="household" name="household" required>
+        </div>
 
-        <label for="hectors">Hectors:</label>
-        <input type="number" id="acre" name="acre" required><br>
+        <div class="form-group">
+            <label for="hectors">Hectors:</label>
+            <input type="number" id="acre" name="acre" required>
+        </div>
 
-        <label for="cattle">Cattle:</label>
-        <input type="number" id="cattle" name="cattle" required><br>
+        <div class="form-group">
+            <label for="cattle">Cattle:</label>
+            <input type="number" id="cattle" name="cattle" required>
+        </div>
 
-        <button type="submit" id="saveNextButton">Save & Next</button>
+        <button type="submit" id="saveNextButton" class="btn btn-next">Save & Next</button>
     </form>
 </div>
 
@@ -48,93 +174,5 @@
         });
     });
 </script>
+
 {% endblock %}
-
-
-<style>
-  
-        /* General styling */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f9f9;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-    
-        #content {
-            max-width: 500px;
-            margin: 20px auto;
-            padding: 30px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-    
-        h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            text-align: center;
-            color: #0066cc;
-        }
-    
-        .form-group {
-            margin-bottom: 15px;
-        }
-    
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #333;
-        }
-    
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-    
-        /* Button styling */
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-            transition: background-color 0.3s ease;
-        }
-    
-        .btn:hover {
-            background-color: #45a049;
-        }
-    
-        .btn-submit {
-            background-color: #4CAF50;
-        }
-    
-        .btn-next {
-            background-color: #007bff;
-        }
-    
-        .btn-submit:hover {
-            background-color: #45a049;
-        }
-    
-        .btn-next:hover {
-            background-color: #0056b3;
-        }
-   
-    
-</style>

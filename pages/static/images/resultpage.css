@@ -57,7 +57,7 @@ body {
 .chart-container {
     margin-bottom: 40px; /* Increased margin between chart containers */
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: #2d452f;
     border-radius: 4px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
