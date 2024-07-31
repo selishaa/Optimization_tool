@@ -12,6 +12,30 @@ body {
     line-height: 1.6;
 }
 
+ /* Background image styling with dim effect */
+ body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/static/images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    z-index: -1; /* Ensure it’s behind the content */
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay with 60% opacity */
+    z-index: -1; /* Ensure it’s behind the content */
+}
+
 /* Styles for the loading spinner */
 #spinner {
     display: none;
@@ -49,6 +73,12 @@ body {
 }
 
 #content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #438406; /* Blue color for headings */
+}
+#content h2 {
     font-size: 36px;
     margin-bottom: 20px;
     text-align: center;

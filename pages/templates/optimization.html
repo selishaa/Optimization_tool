@@ -15,39 +15,39 @@
 
 <div id = "content">
 
-<h1>Cost Optimization Tool For SIRES</h1>
+<h2>Cost Optimization Tool For SIRES</h2>
 
 
 <form action  = "optimization" id="optimization-form">
     <h1>Solar Irradiation</h1>
-    <img src="{% static 'images/solar_panel.jpg'%}"><br>
+    {% comment "" %}<img src="{% static 'images/solar_panel.jpg'%}"><br> {% endcomment %}
     <font size ="+1">How sunny is  your area?</font>
     <p><input type="radio" name="solar" value="sunny">Sunny</p>
     <p><input type="radio" name="solar" value="partly_sunny">Partly Sunny</p>
     <p><input type="radio" name="solar" value="cloudy">Cloudy</p>
     <h1>Wind Energy</h1>
-    <img src="{% static 'images/windturbine.jpg'%}"
+     {% comment "" %}<img src="{% static 'images/windturbine.jpg'%}" 
         width = "200"
         height = "300"
-        /><br>
+        /><br> {% endcomment %}
     <font size ="+1">How windy is your area?</font>
     <p><input type="radio" name="wind" value="high_wind">High Wind</p>
     <p><input type="radio" name="wind" value="medium_wind">Medium Wind</p>
     <p><input type="radio" name="wind" value="low_wind">Low Wind</p>
     <h1>Hydropower</h1>
-    <img src="{% static 'images/Hydropower.jpg'%}"
+    {% comment "" %}<img src="{% static 'images/Hydropower.jpg'%}" 
         width = "400"
         height = "300"
-        /><br>
+        /><br> {% endcomment %}
     <font size ="+1">Does your area have any of the following?</font>
     <p><input type="checkbox" name="ponds" value="ponds">Ponds</p>
     <p><input type="checkbox" name="lakes" value="lakes">Lakes</p>
     <p><input type="checkbox" name="rivers" value="rivers">Rivers</p>
     <h1>Biogas</h1>
-    <img src="{% static 'images/biogas.jpg'%}"
+   {% comment "" %} <img src="{% static 'images/biogas.jpg'%}"  
         width = "400"
         height = "300"
-        /><br>
+        /><br> {% endcomment %}
     <font size ="+1">Does your area have any of the following?</font>
     <p><input type="checkbox" name="cattle" value="cattle">Cattle</p>
     <p><input type="checkbox" name="agriculture" value="agriculture">Agriculture</p>
