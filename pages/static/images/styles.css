@@ -70,19 +70,22 @@ body::after {
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+   
 }
 
 #content h1 {
     font-size: 36px;
     margin-bottom: 20px;
     text-align: center;
-    color: #438406; /* Blue color for headings */
+    color: #438406; 
+    
 }
 #content h2 {
     font-size: 36px;
     margin-bottom: 20px;
-    text-align: center;
-    color: #587c5d; /* Blue color for headings */
+   
+   
+   
 }
 
 #content form {

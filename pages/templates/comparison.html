@@ -6,6 +6,10 @@
     #comparison {
         font-family: Arial, sans-serif;
         margin: 20px;
+        background-color: #fff; /* White background for the box */
+        padding: 20px; /* Padding inside the box */
+        border-radius: 12px; /* Rounded corners */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Shadow for better distinction */
     }
     
     h1 {
@@ -97,7 +101,7 @@
                 <th>Microgrid without Diesel</th>
             </tr>
             <tr>
-                <td>ACS</td>
+                <td>Annualized Cost of System</td>
                 <td class="siress-data">{{ ACS }}</td>
                 <td>{{ ACS1 }}</td>
                 <td>{{ ACSwd }}</td>
@@ -109,7 +113,7 @@
                 <td>{{ Initial_costwd }}</td>
             </tr>
             <tr>
-                <td>NPC</td>
+                <td>Net Present Cost</td>
                 <td class="siress-data">{{ NPC }}</td>
                 <td>{{ NPC1 }}</td>
                 <td>{{ NPCwd }}</td>

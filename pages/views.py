@@ -308,6 +308,11 @@ def calculations_view(request):
     
     #sends the values to the results page
     return render(request, 'result_page.html', {
+    "solar_energy": solar_energy, "solar": solar, 
+    "wind": wind, "wind_energy": wind_energy,
+    "hydro": hydro, "hydro_energy": hydro_energy,
+    "bio": bio, "bio_energy": bio_energy,
+        
     "ACS": ACS,
     "Initial_cost": Initial_cost,
     "NPC": NPC,

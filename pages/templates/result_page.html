@@ -7,14 +7,49 @@
 <div id="content">
     <div id="summary" class="section">
         <h1>Summary</h1>
-        <ul>
-            <li>Annualized cost of system: {{ ACS }}</li>
-            <li>Initial_cost: {{ Initial_cost }}</li>
-            <li>Net Present Cost: {{ NPC }}</li>
-            <li>CO2_emitted: {{ CO2_emitted }}</li>
-            <li>HDI: {{ HDI }}</li>
-            <li>Eexcess: {{ Eexcess }}</li>
-        </ul>
+        <table>
+            <tr> 
+               <th> {{solar}} </th>
+               <td> {{solar_energy}} KW</td>
+            </tr>
+            <tr> 
+                <th> {{wind}} </th>
+                <td> {{wind_energy}} KW</td>
+             </tr>
+
+             <tr> 
+                <th> {{hydro}} </th>
+                <td> {{hydro_energy}} KW</td>
+             </tr>
+             <tr> 
+                <th> {{bio}} </th>
+                <td> {{bio_energy}} KW</td>
+             </tr>
+            <tr>
+                <th>Annualized cost of system</th>
+                <td>{{ ACS }}</td>
+            </tr>
+            <tr>
+                <th>Initial cost</th>
+                <td>{{ Initial_cost }}</td>
+            </tr>
+            <tr>
+                <th>Net Present Cost</th>
+                <td>{{ NPC }}</td>
+            </tr>
+            <tr>
+                <th>CO2 emitted</th>
+                <td>{{ CO2_emitted }}</td>
+            </tr>
+            <tr>
+                <th>HDI</th>
+                <td>{{ HDI }}</td>
+            </tr>
+            <tr>
+                <th>Eexcess</th>
+                <td>{{ Eexcess }}</td>
+            </tr>
+        </table>
     </div>
 
     <div class="section">
@@ -80,5 +115,6 @@
     </div>
 </div>
 {% endblock %}
+
 
 

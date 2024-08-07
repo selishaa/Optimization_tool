@@ -218,6 +218,8 @@ n_pv = 0.7
 pw = 998 # kg/m3: the density of water 
 g = 9.8
 
+#221
+
 nP = 700  # population
 hh = 120  # household
 hectors = 80
@@ -286,7 +288,7 @@ def feasible(individual):
         biogas_gen[t] = x_4 * 5.6 * bio_elec[t]/50
     #load
     for t in range(No_data):
-        load[t] = (15+2*random.uniform(0,1) * ele[t])
+        load[t] = (15+2*random.uniform(0,1) * ele[t])*hh/120 
     # Battery:
     for t in range(No_data):
         if t == 0:
