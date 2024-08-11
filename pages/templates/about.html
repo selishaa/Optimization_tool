@@ -1,28 +1,197 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<h1>About Us</h1>
-<p>This is the about us page which will have a description of the project, the people behind it, and our goals.</p>
-<p>Page was accessed by: {{ request.user }}</p>
-<p>
-    Our Team: {{ my_team }}<br>
-    Contact Number: {{ my_number }}<br>
-    List of Values: {{ my_list }}
-</p>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
 
-<h2>Project Description</h2>
-<p>Our project aims to revolutionize the way communities interact with renewable energy solutions. By integrating advanced algorithms and user-friendly web interfaces, we provide personalized insights and actionable data to help rural areas transition to sustainable energy sources.</p>
+    .content-wrapper {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 40px;
+        background: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
 
-<h2>Our Goals</h2>
-<ul>
-    <li>Empower communities with accurate, data-driven insights.</li>
-    <li>Optimize renewable energy systems to maximize cost-effectiveness.</li>
-    <li>Ensure sustainable and reliable energy solutions for all.</li>
-</ul>
+    h1, h2 {
+        text-align: center;
+        color: #003d00;
+        margin-bottom: 30px;
+    }
 
+    p, ul {
+        color: #555;
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 25px;
+    }
 
-<ul>
-    {% for my_item in my_values %}
-        <li>{{ my_item }}</li>
-    {% endfor %}
-</ul>
+    ul {
+        padding-left: 20px;
+    }
+
+    .section {
+        margin-bottom: 60px;
+    }
+
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+    }
+
+    .card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        width: 45%;
+        max-width: 500px;
+        text-align: center;
+        border: 1px solid #e0e0e0;
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+        background-color: #003d00;
+        color: #ffffff;
+        padding: 15px;
+    }
+
+    .card-header h3 {
+        margin: 0;
+        font-size: 22px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-body img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #ffffff;
+        margin-bottom: 15px;
+    }
+
+    .card-body h3 {
+        color: #003d00;
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+
+    .card-body p {
+        color: #666666;
+        font-size: 15px;
+    }
+</style>
+
+<div class="content-wrapper">
+    <h1>About Us</h1>
+    <p>This page provides a detailed overview of the SIRES optimization tool, its features, and the team behind it.</p>
+
+    <div class="section">
+        <h2>SIRES Optimization Tool</h2>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Features</h3>
+                </div>
+                <div class="card-body">
+                    <p>The SIRES optimization tool is designed to maximize the efficiency and cost-effectiveness of renewable energy systems. It includes real-time data analysis, predictive modeling, and automated adjustments to optimize performance.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>How It Works</h3>
+                </div>
+                <div class="card-body">
+                    <p>The tool utilizes advanced algorithms and data analytics to evaluate different energy scenarios. It processes data on energy production, consumption, and costs to recommend the most efficient system configuration.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Benefits</h3>
+                </div>
+                <div class="card-body">
+                    <p>By using the SIRES tool, communities benefit from reduced energy costs, improved system performance, and a significant decrease in environmental impact. The tool helps make informed decisions about energy investments and ensures sustainable energy solutions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Our Goals</h2>
+        <ul>
+            <li>Empower communities with accurate, data-driven insights.</li>
+            <li>Optimize renewable energy systems to maximize cost-effectiveness.</li>
+            <li>Ensure sustainable and reliable energy solutions for all.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Meet Our Team</h2>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Dr. Zeel Maheshwari</h3>
+                </div>
+                <div class="card-body">
+                    <img src="{% static 'images/prof.jpg' %}" alt="Dr. Zeel Maheshwari" />
+                    <p>Dr. Maheshwari is an Associate Professor in the Department of Physics, Geology, and Engineering Technology at Northern Kentucky University. With over 12 years of experience in renewable energy, her research focuses on harnessing the power of the future. Her expertise lies in integrating renewable energy sources, leveraging artificial intelligence, and advancing power electronics, neural networks, and smart grid technologies. Dr. Maheshwari holds master's and doctorate degrees from Oklahoma State University.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Selisha Thapa</h3>
+                </div>
+                <div class="card-body">
+                    <img src="{% static 'images/selisha.png' %}" alt="Selisha Thapa" />
+                    <p>Selisha Thapa is a Computer Science major at Northern Kentucky University with a passion for developing innovative solutions using cutting-edge technologies. Her expertise includes software development, machine learning, and web development, with a focus on sustainable energy projects.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Shariqa Tayabee</h3>
+                </div>
+                <div class="card-body">
+                    <img src="{% static 'images/shariqa.png' %}" alt="Shariqa Tayabee" />
+                    <p>Shariqa Tayabee is a dedicated researcher with a background in renewable energy systems and environmental science. She brings valuable insights into sustainable practices and is committed to creating eco-friendly energy solutions.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Andrea Cardenas</h3>
+                </div>
+                <div class="card-body">
+                    <img src="{% static 'images/andrea.png' %}" alt="Andrea Cardenas" />
+                    <p>Andrea is a skilled engineer with a focus on power systems and grid technologies. She has been instrumental in the development and implementation of advanced energy solutions that are both sustainable and efficient.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
+
+

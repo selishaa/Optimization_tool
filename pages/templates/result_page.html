@@ -8,38 +8,21 @@
     <div id="summary" class="section">
         <h1>Summary</h1>
         <table>
-            <tr> 
-               <th> {{solar}} </th>
-               <td> {{solar_energy}} KW</td>
-            </tr>
-            <tr> 
-                <th> {{wind}} </th>
-                <td> {{wind_energy}} KW</td>
-             </tr>
-
-             <tr> 
-                <th> {{hydro}} </th>
-                <td> {{hydro_energy}} KW</td>
-             </tr>
-             <tr> 
-                <th> {{bio}} </th>
-                <td> {{bio_energy}} KW</td>
-             </tr>
             <tr>
                 <th>Annualized cost of system</th>
-                <td>{{ ACS }}</td>
+                <td>$ {{ ACS }}</td>
             </tr>
             <tr>
                 <th>Initial cost</th>
-                <td>{{ Initial_cost }}</td>
+                <td>$ {{ Initial_cost }}</td>
             </tr>
             <tr>
                 <th>Net Present Cost</th>
-                <td>{{ NPC }}</td>
+                <td>$ {{ NPC }} </td>
             </tr>
             <tr>
                 <th>CO2 emitted</th>
-                <td>{{ CO2_emitted }}</td>
+                <td>{{ CO2_emitted }} tons</td>
             </tr>
             <tr>
                 <th>HDI</th>
@@ -47,7 +30,7 @@
             </tr>
             <tr>
                 <th>Eexcess</th>
-                <td>{{ Eexcess }}</td>
+                <td>{{ Eexcess }} kWh</td>
             </tr>
         </table>
     </div>

@@ -1,10 +1,12 @@
 # test.py
+from urllib import request
+from django.shortcuts import render
+from GeneticAlgorithmPython.Finaloneyear_ST import return_graph2
 
-from GeneticAlgorithmPython.Finaloneyear_ST import main
 
-if __name__ == "__main__":
+
     # Call main() to run the calculations and print results
-    main()
-
+#main(request)
+return_graph2()
 
 

@@ -5,12 +5,14 @@ from pages import elitism
 from pages.utils import get_graph
 import openpyxl
 
+
 import random
 import numpy as np 
 import math
 import pandas as pd 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.http import HttpRequest
 
  
 import matplotlib.pyplot as plt
@@ -224,6 +226,17 @@ nP = 700  # population
 hh = 120  # household
 hectors = 80
 cattle = 450
+print("The number of population is:", nP)
+print("The number of household is:", hh)
+print("The number of hectors is:", hectors)
+print("The number of cattle is:", cattle)
+
+
+
+
+
+
+
 
 
     
@@ -248,6 +261,7 @@ W_res = np.zeros(No_data)
     # Loss of water supply probability:
 LWS = np.zeros(No_data)
 
+print("outside is running:", LWS)
 
 # constraint function
 # Constrain satisfaction
@@ -437,6 +451,7 @@ def main(request):
     print("-- Best Individual = ", best)
     #PRINT THIS
     print("-- Best Fitness = ", best.fitness.values[0])
+    print("main is running",best)
     
 
     x_1, x_2, x_3, x_4, x_5, x_6, x_7, x_8 = best
@@ -452,6 +467,7 @@ def main(request):
         i_pv[t] = Ns * Np * Voc[t] * Isc[t] * Pmax / (Vmax * Imax)
         P_pv[t] = x_1 * i_pv[t]/1000
         P_pv_ele = np.sum(P_pv)
+        print("P_pv_ele is calculated inside the main", P_pv_ele)
     # Wind generation:
     for t in range(No_data):
         if vin <= v[t] <= vr:
@@ -738,7 +754,8 @@ def return_graph2():
     plt.title("Electricity load")
     graph = get_graph()
     return graph
-
+    print("graph is running", graph)
+    
 def return_graph3():
     # plot LSP
     plt.figure()

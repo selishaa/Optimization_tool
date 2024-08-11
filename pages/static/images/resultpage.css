@@ -34,6 +34,7 @@
 /* Summary Table */
 #summary table {
     width: 100%;
+    margin: 20px 0;
     border-collapse: collapse;
     margin: 0 auto; /* Center the table */
 }
