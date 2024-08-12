@@ -118,7 +118,7 @@ def comparison(request):
     print("HDI: ", HDI)
     
     chart3 = return_graph3()  # Ensure these functions are defined
-    chart5 = return_graph5()
+    chart2 = return_graph2()
     chart6 = return_graph6()
 
     fig1_data = fig1()
@@ -142,7 +142,7 @@ def comparison(request):
         "HDI": HDI,
         
         "chart3": chart3,   
-        "chart5": chart5,
+        "chart2": chart2,
         "chart6": chart6,
         "ACS1": ACS_diesel,     
         "Initial_cost1": Initial_cost_diesel,
