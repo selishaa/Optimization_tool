@@ -80,7 +80,11 @@
 
     /* Styles for SIRES data */
     .siress-data {
-        color: #ff0000 !important; /* Red color for SIRES data */
+        color: #006600;
+    }
+
+    .others {
+        color: #FF0000;
     }
 
     .comparison-container img.siress-data {
@@ -103,32 +107,32 @@
             <tr>
                 <td>Annualized Cost of System</td>
                 <td class="siress-data">{{ ACS }}</td>
-                <td>{{ ACS1 }}</td>
-                <td>{{ ACSwd }}</td>
+                <td class="others">{{ ACS1 }}</td>
+                <td class="others">{{ ACSwd }}</td>
             </tr>
             <tr>
                 <td>Initial Cost</td>
                 <td class="siress-data">{{ Initial_cost }}</td>
-                <td>{{ Initial_cost1 }}</td>
-                <td>{{ Initial_costwd }}</td>
+                <td class="others">{{ Initial_cost1 }}</td>
+                <td class="others">{{ Initial_costwd }}</td>
             </tr>
             <tr>
                 <td>Net Present Cost</td>
                 <td class="siress-data">{{ NPC }}</td>
-                <td>{{ NPC1 }}</td>
-                <td>{{ NPCwd }}</td>
+                <td class="others">{{ NPC1 }}</td>
+                <td class="others">{{ NPCwd }}</td>
             </tr>
             <tr>
                 <td>CO2 Emitted</td>
                 <td class="siress-data">{{ CO2_emitted }}</td>
-                <td>{{ CO2_emitted1 }}</td>
-                <td>{{ CO2_emittedwd }}</td>
+                <td class="others">{{ CO2_emitted1 }}</td>
+                <td class="others">{{ CO2_emittedwd }}</td>
             </tr>
             <tr>
                 <td>HDI</td>
                 <td class="siress-data">{{ HDI }}</td>
-                <td>{{ HDI1 }}</td>
-                <td>{{ HDIwd }}</td>
+                <td class="others">{{ HDI1 }}</td>
+                <td class="others">{{ HDIwd }}</td>
             </tr>
         </table>
     </div>
@@ -141,11 +145,11 @@
                 <div class="figure-title">SIRES: Generation Overview</div>
             </div>
             <div>
-                <img src="data:image/png;base64,{{ fig1 }}" alt="Microgrid with Diesel Generation Overview">
+                <img src="data:image/png;base64,{{ fig1 }}" alt="Microgrid with Diesel Generation Overview" class="others">
                 <div class="figure-title">Microgrid with Diesel: Generation Overview</div>
             </div>
             <div>
-                <img src="data:image/png;base64,{{ figwd1 }}" alt="Microgrid without Diesel Generation Overview">
+                <img src="data:image/png;base64,{{ figwd1 }}" alt="Microgrid without Diesel Generation Overview" class="others">
                 <div class="figure-title">Microgrid without Diesel: Generation Overview</div>
             </div>
         </div>
@@ -159,11 +163,11 @@
                 <div class="figure-title">SIRES: Electricity Load</div>
             </div>
             <div>
-                <img src="data:image/png;base64,{{ fig2 }}" alt="Microgrid with Diesel Electricity Load">
+                <img src="data:image/png;base64,{{ fig2 }}" alt="Microgrid with Diesel Electricity" class="others" >
                 <div class="figure-title">Microgrid with Diesel: Electricity Load</div>
             </div>
             <div>
-                <img src="data:image/png;base64,{{ figwd2 }}" alt="Microgrid without Diesel Electricity Load">
+                <img src="data:image/png;base64,{{ figwd2 }}" alt="Microgrid without Diesel Electricity Load" class="others">
                 <div class="figure-title">Microgrid without Diesel: Electricity Load</div>
             </div>
         </div>
@@ -177,11 +181,11 @@
                 <div class="figure-title">SIRES: Loss of Power</div>
             </div>
             <div>
-                <img src="data:image/png;base64,{{ fig3 }}" alt="Microgrid with Diesel Loss of Power">
+                <img src="data:image/png;base64,{{ fig3 }}" alt="Microgrid with Diesel Loss of Power" class="others">
                 <div class="figure-title">Microgrid with Diesel: Loss of Power</div>
             </div>
             <div>
-                <img src="data:image/png;base64,{{ figwd3 }}" alt="Microgrid without Diesel Loss of Power">
+                <img src="data:image/png;base64,{{ figwd3 }}" alt="Microgrid without Diesel Loss of Power" class="others">
                 <div class="figure-title">Microgrid without Diesel: Loss of Power</div>
             </div>
         </div>

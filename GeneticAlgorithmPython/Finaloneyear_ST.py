@@ -6,6 +6,7 @@ from pages.utils import get_graph
 import openpyxl
 
 
+
 import random
 import numpy as np 
 import math
@@ -18,6 +19,12 @@ from django.http import HttpRequest
 import matplotlib.pyplot as plt
 import seaborn as sns
 import threading
+
+
+from django.shortcuts import render
+from django.http import HttpRequest
+
+
 # Need to add 2 days: G (irradiation), Ta(temperature), v(velocity of wind), ele (to calculus load of electricity), water domestic
 DIMENTIONS = 8                         # the number of variables in fitness function
 BOUND_LOW, BOUND_UP = [50,5,1,1,5,1,5,5],[300,10,10,10,15,15,15,15]  #[25,1,1,1,5,1,5,5],[300,15,10,10,15,20,15,15]    # The boundaries for all variables
@@ -226,10 +233,11 @@ nP = 700  # population
 hh = 120  # household
 hectors = 80
 cattle = 450
-print("The number of population is:", nP)
-print("The number of household is:", hh)
-print("The number of hectors is:", hectors)
-print("The number of cattle is:", cattle)
+print("population is:", nP)
+print("household is:", hh)
+print("hectors is:", hectors)
+print("cattle is:", cattle)
+
 
 
 
@@ -431,6 +439,17 @@ def eaSimpleWithElitism(population, toolbox, cxpb, mutpb, ngen, stats=None,
     return population, logbook
 
 def main(request):
+    nP = request.session.get('population', 700)  # Default to 700 if not found
+    hh = request.session.get('household', 120)
+    hectors = request.session.get('hectors', 80)
+    cattle = request.session.get('cattle', 450)
+
+    print("The number of population is inside", nP)
+    print("The number of household is inside:", hh)
+    print("The number of hectors is inside:", hectors)
+    print("The number of cattle is inside:", cattle)
+
+
     
    
     # create initial population (generation 0):

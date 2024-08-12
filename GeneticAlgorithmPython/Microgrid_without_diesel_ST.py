@@ -272,7 +272,7 @@ toolbox.register("select", tools.selTournament, tournsize = 2)              # se
 toolbox.register("mate", tools.cxSimulatedBinaryBounded, low=BOUND_LOW, up=BOUND_UP, eta=CROWDING_FACTOR)   # crossover 
 toolbox.register("mutate", tools.mutPolynomialBounded, low=BOUND_LOW, up=BOUND_UP, eta=CROWDING_FACTOR, indpb=1.0/ DIMENSIONS)  # mutation
 
-def main():
+def main(request):
     # create initial population (generation 0):
     population = toolbox.populationCreator(n=POPULATION_SIZE)
 
@@ -397,6 +397,14 @@ def main():
     Eexcess = (P_pv_ele-load_total)+(P_wind_ele-load_total)+(hydro_gen_ele-load_total)+(biogas_gen_ele-load_total)
     HDI_total = 0.0978*math.log((total_load+min(0.3*Eexcess,0.5*total_load))/700)-0.0319
     print("HDI =", HDI_total)
+    
+     # Store important values in session
+    request.session['InitialCost_without_diesel'] = InitialCost
+    request.session['CO2_total_without_diesel'] = CO2_total
+    request.session['HDI_total_without_diesel'] = HDI_total
+    request.session['Eexcess_without_diesel'] = Eexcess
+    request.session['ACS_without_diesel'] = ACS
+    request.session['NPC_without_diesel'] = NPC
 
 
 

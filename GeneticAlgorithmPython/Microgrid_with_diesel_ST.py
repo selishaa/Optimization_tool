@@ -18,6 +18,8 @@ import openpyxl
 from io import BytesIO
 import base64
 
+
+print("I am running in microgrid_with_diesel_ST.py outside.")
 DIMENSIONS = 6
 BOUND_LOW, BOUND_UP = [100,1,1,1,5,5],[300,100,100,100,100,100]   
 
@@ -292,7 +294,7 @@ toolbox.register("mutate", tools.mutPolynomialBounded, low=BOUND_LOW, up=BOUND_U
 
 
     
-def main():
+def main(request):
     # create initial population (generation 0):
     population = toolbox.populationCreator(n=POPULATION_SIZE)
 
@@ -432,6 +434,14 @@ def main():
 
     # extract statistics:
     minFitnessValues, meanFitnessValues = logbook.select("min", "avg")
+    
+    # Store important values in session
+    request.session['InitialCost_diesel'] = InitialCost
+    request.session['CO2_total_diesel'] = CO2_total
+    request.session['HDI_total_diesel'] = HDI_total
+    request.session['Eexcess_diesel'] = Eexcess
+    request.session['ACS_diesel'] = ACS
+    request.session['NPC_diesel'] = NPC
 
     # plot statistics
     plt.figure()

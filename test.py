@@ -1,12 +1,10 @@
 # test.py
-from urllib import request
-from django.shortcuts import render
-from GeneticAlgorithmPython.Finaloneyear_ST import return_graph2
+from django.test import RequestFactory
+from GeneticAlgorithmPython.Finaloneyear_ST import main as mainYear
 
+# Create a request object using RequestFactory
+request_factory = RequestFactory()
+request = request_factory.get('/some-url/')
 
-
-    # Call main() to run the calculations and print results
-#main(request)
-return_graph2()
-
-
+# Pass the mock request object to the mainYear function
+mainYear(request)

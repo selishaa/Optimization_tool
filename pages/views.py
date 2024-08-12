@@ -15,6 +15,10 @@ from .NoElitismTrial import main, best
 from GeneticAlgorithmPython.Finaloneyear_ST import main as mainYear
 from GeneticAlgorithmPython.Finaloneyear_ST import bestYear, LPSP, LWSP,  return_graph2, return_graph3, return_graph4, return_graph5, return_graph6, return_graph7 
 
+from GeneticAlgorithmPython.Microgrid_with_diesel_ST import main as mainYear_diesel
+from GeneticAlgorithmPython.Microgrid_without_diesel_ST import main as mainYear_without_diesel
+
+
 from GeneticAlgorithmPython.Microgrid_with_diesel_ST import fig1, fig2, fig3
 from GeneticAlgorithmPython.Microgrid_without_diesel_ST import figwd1, figwd2, figwd3
 
@@ -71,6 +75,14 @@ def comparison(request):
     # Optimized values
     ind = [1, 2, 3, 4, 5, 6, 7, 8]
     mainYear(request)
+    mainYear_diesel(request)
+    mainYear_without_diesel(request)
+    
+    #microgridwith diesel
+    
+    #microgrid without diesel
+    
+    
     # Solar, wind, hydropower, biogas, battery, biogas-powered water pump, wind-powered water pump, solar-powered water pump
     individual = bestYear()
     
@@ -83,19 +95,19 @@ def comparison(request):
     
     
     # Microgrid with diesel data
-    ACS1 = 27334.18616181368
-    Initial_cost1 = 15259.809292713882
-    NPC1 = 520324.0850727574
-    CO2_emitted1 = 3.392324490149929
-    HDI1 = 0.33732247130951326
+    ACS_diesel = request.session.get('ACS_diesel')
+    Initial_cost_diesel = request.session.get('InitialCost_diesel')
+    NPC_diesel = request.session.get('NPC_diesel')
+    CO2_emitted_diesel = request.session.get('CO2_total_diesel')
+    HDI_diesel = request.session.get('HDI_total_diesel')
     
     
     # Microgrid without diesel data
-    ACSwd = 26489.274086932433
-    Initial_costwd = 15407.817652552336
-    NPCwd = 504240.63192997914
-    CO2_emittedwd = 1.8336755819857073
-    HDIwd = 0.3742939469592647
+    ACS_without_diesel = request.session.get('ACS_without_diesel')
+    Initial_cost_without_diesel = request.session.get('InitialCost_without_diesel')
+    NPC_without_diesel = request.session.get('NPC_without_diesel')
+    CO2_emitted_without_diesel = request.session.get('CO2_total_without_diesel')
+    HDI_without_diesel = request.session.get('HDI_total_without_diesel')
     
     
     
@@ -132,17 +144,17 @@ def comparison(request):
         "chart3": chart3,   
         "chart5": chart5,
         "chart6": chart6,
-        "ACS1": ACS1,     
-        "Initial_cost1": Initial_cost1,
-        "NPC1": NPC1,
-        "CO2_emitted1": CO2_emitted1,
-        "HDI1": HDI1,
+        "ACS1": ACS_diesel,     
+        "Initial_cost1": Initial_cost_diesel,
+        "NPC1": NPC_diesel,
+        "CO2_emitted1": CO2_emitted_diesel,
+        "HDI1": HDI_diesel,
         
-        "ACSwd": ACSwd,
-        "Initial_costwd": Initial_costwd,
-        "NPCwd": NPCwd,
-        "CO2_emittedwd": CO2_emittedwd,
-        "HDIwd": HDIwd,
+        "ACSwd": ACS_without_diesel,
+        "Initial_costwd": Initial_cost_without_diesel,
+        "NPCwd": NPC_without_diesel,
+        "CO2_emittedwd": CO2_emitted_without_diesel,
+        "HDIwd": HDI_without_diesel,
         
     })
 
@@ -151,12 +163,13 @@ def comparison(request):
 
 def your_form_submission_view(request):
     if request.method == 'POST':
+        print(" This post request is working")
         # Process the form data here
         request.session['population'] = request.POST.get('population')
         request.session['household'] = request.POST.get('household')
         request.session['hectors'] = request.POST.get('hectors')
         request.session['cattle'] = request.POST.get('cattle')
-        
+    
         return redirect('optimization_tool')  # Redirect to the next view
     return render(request, 'demo.html', {
         

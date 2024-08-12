@@ -6,14 +6,13 @@
 }
 
 body {
-    
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f2f2f2;
     line-height: 1.6;
 }
 
- /* Background image styling with dim effect */
- body::before {
+/* Background image styling with dim effect */
+body::before {
     content: "";
     position: fixed;
     top: 0;
@@ -32,7 +31,7 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Dark overlay with 60% opacity */
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% opacity */
     z-index: -1; /* Ensure it’s behind the content */
 }
 
@@ -70,7 +69,6 @@ body::after {
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-   
 }
 
 #content h1 {
@@ -78,18 +76,36 @@ body::after {
     margin-bottom: 20px;
     text-align: center;
     color: #438406; 
-    
 }
+
 #content h2 {
     font-size: 36px;
     margin-bottom: 20px;
-   
-   
-   
 }
 
 #content form {
-    text-align: center;
+    text-align: left;
+}
+
+#content .form-group {
+    margin-bottom: 20px;
+}
+
+#content .form-group label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#content .form-group input[type="radio"],
+#content .form-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#content .form-group .option-group {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
 }
 
 #content img {
@@ -100,19 +116,6 @@ body::after {
     height: auto;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-#content p {
-    margin-bottom: 20px;
-    color: #555; /* Slightly darker gray color for paragraphs */
-    font-size: 18px;
-    text-align: justify;
-}
-
-#content input[type="radio"],
-#content input[type="checkbox"] {
-    margin-right: 10px;
-    /* Styling radio and checkbox */
 }
 
 #content input[type="submit"] {
