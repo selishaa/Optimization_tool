@@ -830,7 +830,7 @@ def return_graph6():
     colors = ['yellow', 'maroon', 'beige', 'purple']  
     # Create the pie chart
     plt.figure(figsize=(8, 5))
-    plt.pie(sizes, labels=labels, colors=colors, startangle=90, autopct='%1.1f%%', textprops={'fontsize': 8})
+    plt.pie(sizes, labels=labels, colors=colors, startangle=90, autopct='%1.1f%%', textprops={'fontsize': 10})
     plt.title('Electricity Generated From Renewable Sources')
     plt.show()
     graph = get_graph()

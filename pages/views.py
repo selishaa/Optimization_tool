@@ -199,90 +199,11 @@ def calculations_view(request):
     #Solar
     
     
-    solar = str(request.GET["solar"])
-    if(solar == "sunny"):
-        G = [0,0,0,0,0,1,93,273,470,664,819,932,975,992,762,820,598,459,261,25, 0,0,0,0]    
-    elif(solar == "partly_sunny"):
-        G = [0,0,0,0,0,0,0,9,310,95,353,646,692,675,590,458,300,77,1,0,0,0,0,0]
-    elif(solar == "cloudy"):
-        G = [0,0,0,0,0,0,0,13,144,331,527,425,361,392,288,212,144,79,24,0,0,0,0,0]
-    set_solar(G)
-    solar_energy = get_solar
-    solar_energy_value = get_solar()
-
-    #Wind
-    wind = str(request.GET["wind"])
-    if(wind == "high_wind"):
-        v= [7,6,9,9,11,10,10,11,18,15,14,15,11,16,15,14,15,13,16,14,16,15,13,12]    
-    elif(wind == "medium_wind"):
-        v= [10,9,8,7,6,7,5,9,7,10,9,10,9,7,6,6,8,7,5,4,1,1,1,2]
-    elif(wind == "low_wind"):
-        v= [5,2,1,1,0,1,1,2,3,6,6,4,4,3,5,5,1,6,2,5,2,5,4,4]
-    set_wind(v)
-    wind_energy = get_wind
-    wind_energy_value = get_wind()
     
-    #Hydro
-    if('lakes' in request.GET):
-        lakes = request.GET['lakes']
-    else:
-        lakes = False
-    if('rivers' in request.GET):
-        rivers = request.GET['rivers']
-    else:
-        rivers = False
-    if('ponds' in request.GET):
-        ponds = request.GET['ponds']
-    else:
-        ponds = False
-
-    if(rivers and lakes and ponds):
-        base_h = 35
-        hydro = "lakes, rivers and ponds"
-    elif(rivers and lakes and not(ponds)):
-        base_h = 25
-        hydro = "lakes and rivers"
-    elif(not(rivers) and lakes and ponds):
-        base_h = 10
-        hydro = "lakes and ponds"
-    elif(rivers and not(lakes) and not(ponds)):
-        base_h = 20
-        hydro = "rivers"
-    elif(lakes and not(rivers) and not(ponds)):
-        base_h = 5
-        hydro = "lakes"
-    elif(ponds and not(rivers) and not(lakes)):
-        base_h = 2
-        hydro = "ponds"
-    set_hydro(base_h)
-    hydro_energy = get_hydro
-    hydro_energy_value = get_hydro()
-    
-    #Biogas
-    if('cattle' in request.GET):
-        cattle = request.GET['cattle']
-    else:
-        cattle = False
-    if('agriculture' in request.GET):
-        agriculture = request.GET['agriculture']
-    else:
-        agriculture = False
-    if(cattle and agriculture):
-        base_b = 2
-        bio = "cattle and agriculture"
-    if((cattle and not(agriculture)) or (not(cattle) and agriculture)):
-        base_b = 1
-        bio = "cattle or agriculture"
-    set_bio(base_b)
-    bio_energy = get_bio
-    bio_energy_value = get_bio()
-
-    # #Optimized values
-
-    ind = [1, 2, 3, 4, 5, 6, 7, 8]
     mainYear(request)
     #solar, wind, hydropower, biogas, battery, biogas-powered water pump, wind-powered water pump, solar-powered water pump
     individual = bestYear()
+    x_1, x_2, x_3, x_4, x_5, x_6, x_7, x_8 = individual
     
     
     
@@ -321,10 +242,7 @@ def calculations_view(request):
     
     #sends the values to the results page
     return render(request, 'result_page.html', {
-    "solar_energy": solar_energy, "solar": solar, 
-    "wind": wind, "wind_energy": wind_energy,
-    "hydro": hydro, "hydro_energy": hydro_energy,
-    "bio": bio, "bio_energy": bio_energy,
+  
         
     "ACS": ACS,
     "Initial_cost": Initial_cost,
@@ -332,7 +250,8 @@ def calculations_view(request):
     "CO2_emitted": CO2_emitted,
      "HDI": HDI,
      "Eexcess": Eexcess,
-     "individual": individual,
+     "individual": individual, "x_1": x_1, "x_2": x_2, "x_3": x_3, "x_4": x_4,
+        "x_5": x_5, "x_6": x_6, "x_7": x_7, "x_8": x_8,
      
      
      "LPSP_print": LPSP_print,

@@ -483,8 +483,8 @@ if __name__ == "__main__":
     sizes = resource_sums.values()
     colors = ['darkgreen', 'darkmagenta', 'darkorange', 'darkblue']  
     # Create the pie chart
-    plt.figure(figsize=(14, 12))
-    plt.pie(sizes, labels=labels, colors=colors, startangle=90, autopct='%1.1f%%', textprops={'fontsize': 7})
+    plt.figure(figsize=(8, 5))
+    plt.pie(sizes, labels=labels, colors=colors, startangle=90, autopct='%1.1f%%', textprops={'fontsize': 10})
     plt.title('Electricity Generated From Microgrid without diesel')
     plt.show()
     
@@ -507,8 +507,8 @@ def figwd1():
     sizes = resource_sums.values()
     colors = ['darkgreen', 'darkmagenta', 'darkorange', 'darkblue']  
     # Create the pie chart
-    plt.figure(figsize=(14, 12))
-    plt.pie(sizes, labels=labels, colors=colors, startangle=90, autopct='%1.1f%%', textprops={'fontsize': 7})
+    plt.figure(figsize=(8, 5))
+    plt.pie(sizes, labels=labels, colors=colors, startangle=90, autopct='%1.1f%%', textprops={'fontsize': 10})
     plt.title('Electricity Generated From Microgrid without diesel')
     plt.show()
 
