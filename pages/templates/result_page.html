@@ -10,33 +10,34 @@
         <table>
             <tr>
                 <th>Annualized cost of system</th>
-                <td>$ {{ ACS }}</td>
+                <td>$ {{ ACS|floatformat:2 }}</td>
             </tr>
             <tr>
                 <th>Initial cost</th>
-                <td>$ {{ Initial_cost }}</td>
+                <td>$ {{ Initial_cost|floatformat:2 }}</td>
             </tr>
             <tr>
                 <th>Net Present Cost</th>
-                <td>$ {{ NPC }} </td>
+                <td>$ {{ NPC|floatformat:2 }}</td>
             </tr>
             <tr>
-                <th>CO2 emitted</th>
-                <td>{{ CO2_emitted }} tons</td>
+                <th>CO<sub>2</sub> emitted</th>
+                <td>{{ CO2_emitted|floatformat:2 }} tons</td>
             </tr>
             <tr>
-                <th>HDI</th>
-                <td>{{ HDI }}</td>
+                <th>Human Development Index</th>
+                <td>{{ HDI|floatformat:2 }}</td>
             </tr>
             <tr>
-                <th>Eexcess</th>
-                <td>{{ Eexcess }} kWh</td>
+                <th>Eexcess Electricity</th>
+                <td>{{ Eexcess|floatformat:2 }} kWh</td>
             </tr>
+            
         </table>
     </div>
 
     <div class="section">
-        <h1>Renewable Energy Charts</h1>
+        <h1>Results</h1>
 
         <div class="chart-container">
             <div class="chart-group">

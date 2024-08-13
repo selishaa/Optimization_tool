@@ -110,34 +110,35 @@
             </tr>
             <tr>
                 <td>Annualized Cost of System</td>
-                <td class="siress-data">{{ ACS }}</td>
-                <td class="others">{{ ACS1 }}</td>
-                <td class="others">{{ ACSwd }}</td>
+                <td class="siress-data">${{ ACS|floatformat:2 }}</td>
+                <td class="others">${{ ACS1|floatformat:2 }}</td>
+                <td class="others">${{ ACSwd|floatformat:2 }}</td>
             </tr>
             <tr>
                 <td>Initial Cost</td>
-                <td class="siress-data">{{ Initial_cost }}</td>
-                <td class="others">{{ Initial_cost1 }}</td>
-                <td class="others">{{ Initial_costwd }}</td>
+                <td class="siress-data">${{ Initial_cost|floatformat:2 }}</td>
+                <td class="others">${{ Initial_cost1|floatformat:2 }}</td>
+                <td class="others">${{ Initial_costwd|floatformat:2 }}</td>
             </tr>
             <tr>
                 <td>Net Present Cost</td>
-                <td class="siress-data">{{ NPC }}</td>
-                <td class="others">{{ NPC1 }}</td>
-                <td class="others">{{ NPCwd }}</td>
+                <td class="siress-data">${{ NPC|floatformat:2 }}</td>
+                <td class="others">${{ NPC1|floatformat:2 }}</td>
+                <td class="others">${{ NPCwd|floatformat:2 }}</td>
             </tr>
             <tr>
-                <td>CO2 Emitted</td>
-                <td class="siress-data">{{ CO2_emitted }}</td>
-                <td class="others">{{ CO2_emitted1 }}</td>
-                <td class="others">{{ CO2_emittedwd }}</td>
+                <th>CO<sub>2</sub> emitted</th>
+                <td class="siress-data">{{ CO2_emitted|floatformat:2 }}tons</td>
+                <td class="others">{{ CO2_emitted1|floatformat:2 }}tons</td>
+                <td class="others">{{ CO2_emittedwd|floatformat:2 }}tons</td>
             </tr>
             <tr>
-                <td>HDI</td>
-                <td class="siress-data">{{ HDI }}</td>
-                <td class="others">{{ HDI1 }}</td>
-                <td class="others">{{ HDIwd }}</td>
+                <td>Human Development Index</td>
+                <td class="siress-data">{{ HDI|floatformat:2 }}</td>
+                <td class="others">{{ HDI1|floatformat:2 }}</td>
+                <td class="others">{{ HDIwd|floatformat:2 }}</td>
             </tr>
+            
         </table>
     </div>
 

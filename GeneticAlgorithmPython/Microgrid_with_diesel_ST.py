@@ -313,7 +313,7 @@ def main(request):
     print("-- Best Individual = ", best)
     print("-- Best Fitness = ", best.fitness.values[0])
 
-    x_1, x_2, x_3, x_4, x_5, x_6 = best
+    x_1, x_2, x_3, x_4, x_5, x_6 = best #imp pull values from best individual
     #PV generation:                      # define all the equations again to print them inside the main()
     #PV generation:
     for t in range(No_data):

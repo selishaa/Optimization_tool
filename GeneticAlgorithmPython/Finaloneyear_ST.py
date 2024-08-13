@@ -473,7 +473,7 @@ def main(request):
     print("main is running",best)
     
 
-    x_1, x_2, x_3, x_4, x_5, x_6, x_7, x_8 = best
+    x_1, x_2, x_3, x_4, x_5, x_6, x_7, x_8 = best #imp pull up the values of the best individual
     
     
     global bestIND
