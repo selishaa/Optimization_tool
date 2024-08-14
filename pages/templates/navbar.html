@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced Navigation Bar</title>
+    {% load static %}
     <style>
         /* Resetting default styles */
         * {
@@ -13,21 +14,33 @@
         }
 
         body {
-            
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            
         }
 
         nav {
             background-color: #fafaf0;
-            padding: 10px 0; /* Padding around the navigation */
+            padding: 10px 20px; /* Padding around the navigation */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for a subtle raised effect */
-            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px; /* Set the desired height for the navbar */
         }
+        nav .logo {
+            margin-left: 20px; /* Spacing from the left edge */
+        }
+
+        nav .logo img {
+            height: 88px; /* Adjust the size of the logo */
+            border-radius: 60%; /* Make the logo circular */
+        }
+
 
         nav ul {
             list-style-type: none;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 0;
             margin: 0;
         }
@@ -73,6 +86,9 @@
 <body>
 
 <nav>
+    <div class="logo">
+        <a href="{% url 'home' %}"><img src="{% static 'images/logo.jpg' %}" alt="Logo"></a>
+    </div>
     <ul>
         <li><a href="{% url 'home' %}">Home</a></li>
         <li><a href="{% url 'about' %}">About</a></li>

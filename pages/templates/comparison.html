@@ -140,6 +140,58 @@
             </tr>
             
         </table>
+        <table class="comparison-table">
+            <tr>
+            <td>solar </td>
+            <td class="siress-data">{{ x_1|floatformat:2 }} kw</td>
+            <td class="others">{{ x_1_diesel|floatformat:2 }} kw</td>
+            <td class="others">{{ x_1_without_diesel|floatformat:2 }} kw</td>
+            </tr>
+            <tr>
+                <td>wind </td>
+                <td class="siress-data">{{ x_2|floatformat:2 }} kw</td>
+                <td class="others">{{ x_2_diesel|floatformat:2 }} kw</td>
+                <td class="others">{{ x_2_without_diesel|floatformat:2 }} kw</td>
+            </tr>
+            <tr>
+                    <td>hydro </td>
+                    <td class="siress-data">{{ x_3|floatformat:2 }} kw</td>
+                    <td class="others">{{ x_3_diesel|floatformat:2 }} kw</td>
+                    <td class="others">{{ x_3_without_diesel|floatformat:2 }} kw</td>
+            </tr>
+            <tr>
+                    <td>bio </td>
+                    <td class="siress-data">{{ x_4|floatformat:2 }} kw</td>
+                    <td class="others">{{ x_4_diesel|floatformat:2 }} kw</td>
+                    <td class="others">{{ x_4_without_diesel|floatformat:2 }} kw</td>
+            </tr>
+            <tr>
+                <td>battery </td>
+                <td class="siress-data">{{ x_5|floatformat:2 }} kWh</td>
+                <td class="others">{{ x_5_diesel|floatformat:2 }} kWh</td>
+                <td class="others">{{ x_5_without_diesel|floatformat:2 }} kWh</td>
+            </tr>
+        </tr>
+        <tr>
+            <td>biogas water </td>
+            <td class="siress-data">{{ x_6|floatformat:2 }} </td>
+            <td class="others">{{ x_6_diesel|floatformat:2 }} </td>
+            <td class="others">-</td>
+        </tr>
+        <tr>
+            <td>wind water </td>
+            <td class="siress-data">{{ x_7|floatformat:2 }} </td>
+            <td class="others">-</td>
+            <td class="others">-</td>
+        </tr>
+        <tr>
+            <td>solar water </td>
+            <td class="siress-data">{{ x_8|floatformat:2 }}</td>
+            <td class="others">-</td>
+            <td class="others">-</td>
+        </tr>
+
+        </table>
     </div>
 
     <div class="comparison-section">

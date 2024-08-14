@@ -16,7 +16,9 @@ from GeneticAlgorithmPython.Finaloneyear_ST import main as mainYear
 from GeneticAlgorithmPython.Finaloneyear_ST import bestYear, LPSP, LWSP,  return_graph2, return_graph3, return_graph4, return_graph5, return_graph6, return_graph7 
 
 from GeneticAlgorithmPython.Microgrid_with_diesel_ST import main as mainYear_diesel
+from GeneticAlgorithmPython.Microgrid_with_diesel_ST import bestYear_diesel
 from GeneticAlgorithmPython.Microgrid_without_diesel_ST import main as mainYear_without_diesel
+from GeneticAlgorithmPython.Microgrid_without_diesel_ST import bestYear_without_diesel
 
 
 from GeneticAlgorithmPython.Microgrid_with_diesel_ST import fig1, fig2, fig3
@@ -85,6 +87,8 @@ def comparison(request):
     
     # Solar, wind, hydropower, biogas, battery, biogas-powered water pump, wind-powered water pump, solar-powered water pump
     individual = bestYear()
+    individual_diesel = bestYear_diesel()
+    
     
     # SIRES data
     ACS = request.session.get('ACS')
@@ -92,6 +96,8 @@ def comparison(request):
     NPC = request.session.get('NPC')
     CO2_emitted = request.session.get('CO2_total')
     HDI = request.session.get('HDI_total')
+    individual = bestYear()
+    x_1, x_2, x_3, x_4, x_5, x_6, x_7, x_8 = individual
     
     
     # Microgrid with diesel data
@@ -100,6 +106,8 @@ def comparison(request):
     NPC_diesel = request.session.get('NPC_diesel')
     CO2_emitted_diesel = request.session.get('CO2_total_diesel')
     HDI_diesel = request.session.get('HDI_total_diesel')
+    individual_diesel = bestYear_diesel()
+    x_1_diesel, x_2_diesel, x_3_diesel, x_4_diesel, x_5_diesel, x_6_diesel = individual_diesel
     
     
     # Microgrid without diesel data
@@ -108,6 +116,8 @@ def comparison(request):
     NPC_without_diesel = request.session.get('NPC_without_diesel')
     CO2_emitted_without_diesel = request.session.get('CO2_total_without_diesel')
     HDI_without_diesel = request.session.get('HDI_total_without_diesel')
+    individual_without_diesel = bestYear_without_diesel()
+    x_1_without_diesel, x_2_without_diesel, x_3_without_diesel, x_4_without_diesel, x_5_without_diesel = individual_without_diesel
     
     
     
@@ -140,6 +150,7 @@ def comparison(request):
         "NPC": NPC,
         "CO2_emitted": CO2_emitted,
         "HDI": HDI,
+        "individual": individual, "x_1": x_1, "x_2": x_2, "x_3": x_3, "x_4": x_4, "x_5": x_5, "x_6": x_6, "x_7": x_7, "x_8": x_8,
         
         "chart3": chart3,   
         "chart2": chart2,
@@ -149,12 +160,14 @@ def comparison(request):
         "NPC1": NPC_diesel,
         "CO2_emitted1": CO2_emitted_diesel,
         "HDI1": HDI_diesel,
+        "individual_diesel": individual_diesel, "x_1_diesel": x_1_diesel, "x_2_diesel": x_2_diesel, "x_3_diesel": x_3_diesel, "x_4_diesel": x_4_diesel, "x_5_diesel": x_5_diesel, "x_6_diesel": x_6_diesel,
         
         "ACSwd": ACS_without_diesel,
         "Initial_costwd": Initial_cost_without_diesel,
         "NPCwd": NPC_without_diesel,
         "CO2_emittedwd": CO2_emitted_without_diesel,
         "HDIwd": HDI_without_diesel,
+        "individual_without_diesel": individual_without_diesel, "x_1_without_diesel": x_1_without_diesel, "x_2_without_diesel": x_2_without_diesel, "x_3_without_diesel": x_3_without_diesel, "x_4_without_diesel": x_4_without_diesel, "x_5_without_diesel": x_5_without_diesel,
         
     })
 

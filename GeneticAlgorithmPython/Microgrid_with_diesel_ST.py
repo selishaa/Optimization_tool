@@ -313,25 +313,27 @@ def main(request):
     print("-- Best Individual = ", best)
     print("-- Best Fitness = ", best.fitness.values[0])
 
-    x_1, x_2, x_3, x_4, x_5, x_6 = best #imp pull values from best individual
+    x_1_diesel, x_2_diesel, x_3_diesel, x_4_diesel, x_5_diesel, x_6_diesel = best #imp pull values from best individual
     #PV generation:                      # define all the equations again to print them inside the main()
     #PV generation:
+    global bestIND
+    bestIND = [x_1_diesel, x_2_diesel, x_3_diesel, x_4_diesel, x_5_diesel, x_6_diesel]
     for t in range(No_data):
         Tc[t] = Ta[t] + ((NCOT - 20) / 800) * G[t]
         Voc[t] = Voc_stc - (kv * Tc[t])
         Isc[t] = (Isc_stc + (ki * (Tc[t] - 25))) * G[t] / 1000
         i_pv[t] = Ns * Np * Voc[t] * Isc[t] * Pmax / (Vmax * Imax)
-        P_pv[t] = x_1 * i_pv[t]/1000
+        P_pv[t] = x_1_diesel * i_pv[t]/1000
         P_pv_ele = np.sum(P_pv)
     # Wind generation:
     for t in range(No_data):
         if vin <= v[t] <= vr:
             wind[t] = Pr * (v[t]-vin)/(vr-vin)
-            p_wind[t] = x_2 * wind[t]/1000
+            p_wind[t] = x_2_diesel * wind[t]/1000
             P_wind_ele = np.sum(p_wind)
         elif vr <= v[t] <= vo:
             wind[t] = Pr
-            p_wind[t] = x_2 * wind[t]/1000
+            p_wind[t] = x_2_diesel * wind[t]/1000
             P_wind_ele = np.sum(p_wind)
         else:
             wind[t] = 0
@@ -340,16 +342,16 @@ def main(request):
     # Hydro power generation:
     for t in range(No_data):
         hydro_ele[t] = 20+(5 * random.uniform(0,1))
-        hydro_gen[t] = x_3* n_hydro * 1 * Hd * g *hydro_ele[t]/3600
+        hydro_gen[t] = x_3_diesel* n_hydro * 1 * Hd * g *hydro_ele[t]/3600
         hydro_gen_ele = np.sum(hydro_gen)
     # Biogas generation:
     for t in range(No_data):
         bio_elec[t] = 1+ random.uniform(0,1)
-        biogas_gen[t] = x_4 * 5.6 * bio_elec[t]/50
+        biogas_gen[t] = x_4_diesel * 5.6 * bio_elec[t]/50
         biogas_gen_ele = np.sum(biogas_gen)
     # Diesel generator:
     for t in range(No_data):
-        p_d[t] = x_6 *P_rated[t] * 0.5
+        p_d[t] = x_6_diesel *P_rated[t] * 0.5
         diesel_gen_ele = np.sum(p_d)
     #load of electricity and cooking purposes (in kWh)
     for t in range(No_data):
@@ -369,14 +371,14 @@ def main(request):
             #if (p_bat_total[t] > 0).all(): #charging
             if p_bat_total[t] > 0: #charging
                 p_bat_total[t] =  (p_wind[t] + P_pv[t] + hydro_gen[t] + biogas_gen[t] + p_d[t])- load[t]
-                p_bat[t] = x_5 * (p_bat_total[t]/p_bat_factor)
+                p_bat[t] = x_5_diesel * (p_bat_total[t]/p_bat_factor)
             else:
                 p_bat[t] = 0
         else:
             #if (p_wind[t] + P_pv[t] + hydro_gen[t] + biogas_gen[t] + p_d[t] + p_bat[t-1] > load[t]).all(): # discharging while retaining some charge 
             if p_wind[t] + P_pv[t] + hydro_gen[t] + biogas_gen[t] + p_d[t] + p_bat[t-1] > load[t]: # discharging while retaining some charge 
                 p_bat_total[t] =   (p_bat_total[t-1] + p_wind[t] + P_pv[t] + hydro_gen[t] + biogas_gen[t] + p_d[t] - load[t]) 
-                p_bat[t] = x_5 * (p_bat_total[t]/p_bat_factor)
+                p_bat[t] = x_5_diesel * (p_bat_total[t]/p_bat_factor)
             else:
                 p_bat[t] = 0 # load unfulfill
     # Loss of power supply probability
@@ -393,9 +395,9 @@ def main(request):
     print("LPS =", LPS)
     print("LPSP =",LPSP)
 
-    InitialCost = CRF * (x_1 *PRATING_PV *CC_PV + x_2 * PRATING_WT * CC_WT + x_3 * PRATING_HT * CC_HT
-                         + x_4 *PRATING_BG * CC_BG + x_5 * PRATING_CB * CC_CB + x_6 * PRATING_DG * CC_DG)
-    MaintainCost = (1+f)**n_maintain * (x_1 * CM_PV + x_2 * CM_WT + x_3 * CM_HT + x_4 * CM_BG + x_5 * CM_CB + x_6 *CM_DG)
+    InitialCost = CRF * (x_1_diesel *PRATING_PV *CC_PV + x_2_diesel * PRATING_WT * CC_WT + x_3_diesel * PRATING_HT * CC_HT
+                         + x_4_diesel *PRATING_BG * CC_BG + x_5_diesel * PRATING_CB * CC_CB + x_6_diesel * PRATING_DG * CC_DG)
+    MaintainCost = (1+f)**n_maintain * (x_1_diesel * CM_PV + x_2_diesel * CM_WT + x_3_diesel * CM_HT + x_4_diesel * CM_BG + x_5_diesel * CM_CB + x_6_diesel *CM_DG)
     ReplaceCost = SFF * (CR_BG + CR_CB + CR_DG)
     ACS = InitialCost + MaintainCost + ReplaceCost 
     NPC = ACS/CRF
@@ -514,6 +516,9 @@ def main(request):
     
 if __name__ == "__main__":
     main()
+    
+def bestYear_diesel():
+    return bestIND
     
         # Pie chart to split each sum for microgrid with diesel
         
