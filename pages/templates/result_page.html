@@ -25,46 +25,48 @@
                 <td>{{ CO2_emitted|floatformat:2 }} tons</td>
             </tr>
             <tr>
-                <th>Human Development Index</th>
+                <th>Human Development Index (HDI)</th>
                 <td>{{ HDI|floatformat:2 }}</td>
             </tr>
             <tr>
-                <th>Eexcess Electricity</th>
+                <th>Excess Electricity</th>
                 <td>{{ Eexcess|floatformat:2 }} kWh</td>
             </tr>
         </table>
-        <table>
+
+        <h1>Optimal Sizing of System Components</h1>
+        <table >
             <tr>
-                <th>solar</sub></th>
-                <td>{{ x_1|floatformat:2 }} kw</td>
+                <th>Solar PV</sub></th>
+                <td>{{ x_1|floatformat:2 }} kW</td>
             </tr>
             <tr>
-                <th>wind</sub></th>
-                <td>{{ x_2|floatformat:2 }} kw</td>
+                <th>Wind Turbines</sub></th>
+                <td>{{ x_2|floatformat:2 }} kW</td>
             </tr>
             <tr>
-                <th>hydro</sub></th>
-                <td>{{ x_3|floatformat:2 }} kw</td>
+                <th>Hydro power plant</sub></th>
+                <td>{{ x_3|floatformat:2 }} kW</td>
             </tr>
             <tr>
-                <th>bio</sub></th>
-                <td>{{ x_4|floatformat:2 }} kw</td>
+                <th>Biogas Generator</sub></th>
+                <td>{{ x_4|floatformat:2 }} kW</td>
             </tr>
             <tr>
-                <th>battery</th>
-                <td>{{ x_5|floatformat:2 }} kWh</td>
+                <th>Battery Bank</th>
+                <td>{{ x_5|floatformat:2 }} kVAh</td>
             </tr>
             <tr>
-                <th>biogas water</th>
-                <td>{{ x_6|floatformat:2 }}</td>
+                <th>Biogas water Pump</th>
+                <td>{{ x_6|floatformat:0 }}</td>
             </tr>
             <tr>
-                <th>wind water</th>
-                <td>{{ x_7|floatformat:2 }}</td>
+                <th>Wind water Pump</th>
+                <td>{{ x_7|floatformat:0 }}</td>
             </tr>
             <tr>
-                <th>solar water</th>
-                <td>{{ x_8|floatformat:2 }}</td>
+                <th>Solar water Pump</th>
+                <td>{{ x_8|floatformat:0 }}</td>
             </tr>
             
         </table>
